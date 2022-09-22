@@ -4,12 +4,12 @@ USE reservas_de_pistas;
 
 CREATE TABLE `usuarios` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `nif` varchar(9) NOT NULL UNIQUE,
+  `nif` varchar(9) NOT NULL ,
   `nombre` varchar(255) NOT NULL,
   `apellido1` varchar(255) NOT NULL,
   `apellido2` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL UNIQUE,
-  `username` varchar(255) NOT NULL UNIQUE,
+  `email` varchar(255) NOT NULL ,
+  `username` varchar(255) NOT NULL ,
   `password` varchar(255) NOT NULL,
   `localidad` varchar(255) NOT NULL,
   `provincia` varchar(255) NOT NULL,
