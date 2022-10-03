@@ -7,7 +7,6 @@ import org.iesalixar.servidor.model.Usuario;
 public interface UsuarioService {
 
 	public Usuario insertUsuario(Usuario usuario);
-	
 	public List<Usuario> getAllUsuarios();
 	public Usuario findUsuarioByIdModel(Long id);
 	public Usuario actualizarUsuario(Usuario usuario);

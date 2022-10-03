@@ -1,5 +1,6 @@
 package org.iesalixar.servidor.controller;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -24,7 +25,12 @@ public class UsuariosController {
 	UsuarioServiceImpl usuarioService;
 
 	@RequestMapping("/usuarios")
-	public String usuarios(Model model) {
+	public String usuarios(Model model, Principal principal) {
+
+		// Para mostrar nombre y apellidos del usuario que ha iniciado sesion
+		Usuario user = usuarioService.getUsuarioByUserName(principal.getName());
+		model.addAttribute("user", user);
+		// -------------------------------------
 
 		List<Usuario> usuario = usuarioService.getAllUsuarios();
 
@@ -32,39 +38,14 @@ public class UsuariosController {
 		return "usuario/usuarios";
 	}
 
-	@GetMapping("/usuarios/edit")
-	public String editUsuarioGet(@RequestParam(name = "user") String user, Model model) {
-
-		Usuario usuario = usuarioService.findUsuarioByIdModel(Long.parseLong(user));
-		model.addAttribute("usuario", usuario);
-
-		return "usuario/editUsuario";
-	}
-
-	@PostMapping("/usuarios/edit")
-	public String updateUsuarioPost(@ModelAttribute Usuario usu) {
-
-		if (usuarioService.actualizarUsuario(usu) == null) {
-			return "redirect:/usuarios/edit?error=error&user" + usu.getId();
-		}
-		return "redirect:/usuarios";
-	}
-
-	@GetMapping("/usuarios/delete")
-	public String eliminarUsuario(@RequestParam(required = true, name = "user") String user, Model model) {
-
-		Usuario usuario = usuarioService.findUsuarioByIdModel(Long.parseLong(user));
-
-		if (usuario != null) {
-			usuarioService.eliminarUsuario(usuario);
-			return "redirect:/usuarios?codigo=" + user;
-		} else {
-			return "redirect:/usuarios/";
-		}
-	}
-
 	@GetMapping("/usuarios/addUsuario")
-	public String addUsuarioGet(@RequestParam(required = false, name = "error") String error, Model model) {
+	public String addUsuarioGet(@RequestParam(required = false, name = "error") String error, Model model,
+			Principal principal) {
+
+		// Para mostrar nombre y apellidos del usuario que ha iniciado sesion
+		Usuario user = usuarioService.getUsuarioByUserName(principal.getName());
+		model.addAttribute("user", user);
+		// -------------------------------------
 
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		model.addAttribute("usuarioDTO", usuarioDTO);
@@ -91,7 +72,7 @@ public class UsuariosController {
 		usuario.setRole(usuarioDTO.getRole());
 		usuario.setFecha_nacimiento(usuarioDTO.getFecha_nacimiento());
 //		usuario.setFecha_registro(usuarioDTO.getFecha_registro());
-		
+
 		String fechaActual = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
 		usuario.setFecha_registro(fechaActual);
 
@@ -100,7 +81,44 @@ public class UsuariosController {
 		}
 
 		return "redirect:/usuarios";
+	}
 
+	@GetMapping("/usuarios/edit")
+	public String editUsuarioGet(@RequestParam(name = "user") String user, Model model, Principal principal) {
+
+		// Para mostrar nombre y apellidos del usuario que ha iniciado sesion
+		Usuario user2 = usuarioService.getUsuarioByUserName(principal.getName());
+		model.addAttribute("user", user2);
+		// -------------------------------------
+
+		Usuario usuario = usuarioService.findUsuarioByIdModel(Long.parseLong(user));
+		model.addAttribute("usuario", usuario);
+
+		return "usuario/editUsuario";
+	}
+
+	@PostMapping("/usuarios/edit")
+	public String updateUsuarioPost(@ModelAttribute Usuario usu, UsuarioDTO usuarioDTO) {
+
+		usu.setPassword(new BCryptPasswordEncoder(15).encode(usu.getPassword()));
+
+		if (usuarioService.actualizarUsuario(usu) == null) {
+			return "redirect:/usuarios/edit?error=error&user" + usu.getId();
+		}
+		return "redirect:/usuarios";
+	}
+
+	@GetMapping("/usuarios/delete")
+	public String eliminarUsuario(@RequestParam(required = true, name = "user") String user, Model model) {
+
+		Usuario usuario = usuarioService.findUsuarioByIdModel(Long.parseLong(user));
+
+		if (usuario != null) {
+			usuarioService.eliminarUsuario(usuario);
+			return "redirect:/usuarios?codigo=" + user;
+		} else {
+			return "redirect:/usuarios/";
+		}
 	}
 
 }

@@ -1,5 +1,6 @@
 package org.iesalixar.servidor.controller;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -21,7 +22,7 @@ public class LoginController {
 	@Autowired
 	UsuarioServiceImpl usuarioService;
 
-	@RequestMapping({"/","/login"})
+	@RequestMapping({ "/", "/login" })
 	public String login(Model model) {
 		return "login/index";
 	}
@@ -65,9 +66,15 @@ public class LoginController {
 		return "redirect:/";
 	}
 
-	
-	@RequestMapping({"/menu"})
-	public String menu(Model model) {
+	@RequestMapping({ "/menu" })
+	public String menu(Model model, Principal principal) {
+
+		// Para mostrar nombre y apellidos del usuario que ha iniciado sesion
+		//http://www.it.uc3m.es/jaf/aw/practicas/5-spring/
+		Usuario user = usuarioService.getUsuarioByUserName(principal.getName());
+		model.addAttribute("user", user);
+
 		return "menu/menu";
 	}
+
 }

@@ -10,13 +10,26 @@
 				<form th:action="@{/reservar}" method="post" th:object="${reservaDTO}">
 					
 											
-					<label for="id_usuario" class="form-label mt-3">Id Usuario</label>
+					<!-- <label for="id_usuario" class="form-label mt-3">Id Usuario</label>
 					<input type="text" class="form-control" id="id_usuario" name="id_usuario"
-						th:field="*{id_usuario}" required>
+						th:field="*{id_usuario}" required> -->
+					
+					
+					<select name="usuario" class="form-select mt-3" th:field="*{id_usuario}">
+						<option th:each="u : ${usuario}" 
+                                th:value="${u.id}" 
+                                th:text="${u.nombre} + ' ' +${u.apellido1} + ' ' +${u.apellido2}"></option>
+					</select>
+					
+					<select name="pista" class="form-select mt-3" th:field="*{id_pista}">
+						<option th:each="p : ${pista}" 
+                                th:value="${p.id}" 
+                                th:text="${p.nombre} + ' --- ' +${p.deporte}"></option>
+					</select>
 										
-					<label for="id_pista" class="form-label mt-3">Id Pista</label>
+					<!-- <label for="id_pista" class="form-label mt-3">Id Pista</label>
 					<input type="text" class="form-control" id="id_pista" name="id_pista"
-						th:field="*{id_pista}" required>
+						th:field="*{id_pista}" required>  -->
 						
 					
 				<!-- 	<label for="departamento" class="form-label mt-3">Departamento</label>	

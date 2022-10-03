@@ -15,20 +15,17 @@
 
 </head>
 <body>
-	<!-- <h1>Este es el menu</h1>
-<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Cerrar Sesion"/>
-        </form>
+	<!-- 
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>     
+<span sec:authentication="principal.username"/></h3> 
+<span th:text="${#authentication.getPrincipal().getUsername()}"></span>
    -->
-
-
 
 	<header th:insert="fragments/parts::barra"></header>
 
 	<div class="login-page">
 		<div class="form">
-			<h6>Bienvenido/a NOMBRE Y APELLIDO.</h6>
+			<h6>Bienvenido/a <b><span th:text="${user.getUsername()}"/></b></h6>
 			<br>
 			<p>Desde ReservaLaPista le damos las gracias por usar nuestros
 				servicios.</p>
@@ -36,8 +33,5 @@
 			<a th:href="@{/reservar}">Ir a Reservar Espacio</a>
 		</div>
 	</div>
-
 </body>
-
-
 </html>
