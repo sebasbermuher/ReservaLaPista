@@ -3,8 +3,15 @@ Esta aplicación pretende gestionar las reservas de pistas deportivas de una for
 
 ### Alcance del proyectos
 # Tareas que mi proyecto llevará a cabo:
-* Como usuario **(ROL_USER)**:
-* Hola
+Para poder acceder a la web el usuario debe de estar registrado.
+
+Hay dos tipos de roles de usuarios:
+
+* Usuario **(ROL_USER)**:
+1. Podrá acceder a la web
+
+
+* Usuario administrador **(ROL_ADMIN)**:
 
 
 
