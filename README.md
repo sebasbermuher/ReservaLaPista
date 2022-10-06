@@ -8,9 +8,9 @@
 
 ## Breve descripción del proyecto
 
-ReservaLaPista es una aplicación web donde podrás reservar pistas deportivas.
+**ReservaLaPista** es una aplicación web donde podrás reservar pistas deportivas.
 
-Normalmente, cuando quieres reservar una pista, por ejemplo en tu polideportivo municipal, debes de llamar o presentarte en la oficina. Esta aplicación está pensada para que desde tu casa y sin tener que contactar con nadie lo puedas hacer en un simple momento, sin depender de nadie, solamente con internet.
+Normalmente, cuando quieres reservar una pista, por ejemplo en tu polideportivo municipal, debes de llamar o presentarte en la oficina. Esta aplicación está pensada para que desde tu casa y sin tener que contactar con nadie lo puedas hacer en un simple click, sin depender de nadie, solamente con internet.
 
 Y es que, cada vez, el uso de estas tecnologías son más frecuentes y son una de gran ayuda para las personas.
 
