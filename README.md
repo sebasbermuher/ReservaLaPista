@@ -8,9 +8,17 @@
 
 ## Breve descripción del proyecto
 
-Si ya tienes una idea para tu aplicación, explícala brevemente. Si no es así, lo que realmente necesitas es **buscar un problema o necesidad a la que darle solución**, y estos **están por todas partes**. Así que trata de buscar problemas o necesidades en tu vida diaria y realiza una lista. Una vez que tengas una lista exhaustiva, ya puedes empezar a pensar en **cómo puedes resolverlos**.
+ReservaLaPista es una aplicación web donde podrás reservar pistas deportivas.
 
-En este apartado el alumno debe hacer una breve descripción del proyecto que vaya a realizar. Esta descripción no será ua descripción detallada, será una presentación general con no más de 10 líneas.
+Normalmente, cuando quieres reservar una pista, por ejemplo en tu polideportivo municipal, debes de llamar o presentarte en la oficina. Esta aplicación está pensada para que desde tu casa y sin tener que contactar con nadie lo puedas hacer en un simple momento, sin depender de nadie, solamente con internet.
+
+Y es que, cada vez, el uso de estas tecnologías son más frecuentes y son una de gran ayuda para las personas.
+
+Cuenta con varias funciones, pero la principal es la de reservar espacios.
+
+¿Por que no te atreves y la usas?
+
+Para poder acceder al sitio web debemos estar registrado como usuario. Para ello en la pantalla inicial contaremos con un login de inicio de sesión y un formulario de registro. 
 
 ## Definir el objetivo de la aplicación
 **Tener una gran idea** o encontrar un punto del mercado al que no se esté dando un producto o servicio es el punto de partida en cada nuevo proyecto. Antes de comenzar debes **definir claramente el propósito y la misión de la aplicación web**:
