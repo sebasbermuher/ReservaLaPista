@@ -16,4 +16,4 @@ Para la vista MVC, usaré **Thymeleaf**.
 Para la parte frontend utilizaré principalmente **HTML5** y **CSS3**, añadiendo **Bootstrap**, ya que me ayudará a hacer mi web responsive.
 Tambien implementaré **Javascript** para que la web sea más interactiva.
 
-Para la gestión de la base de datos usaŕe **MariaDB** (SQL) en un contenedor **Docker**. En la parte local me ayudaré con **DBeaver**, que es una interfaz para la gestión de bases de datos.
+Para la gestión de la base de datos usare **MariaDB** (SQL) en un contenedor **Docker**. En la parte local me ayudaré con **DBeaver**, que es una interfaz para la gestión de bases de datos.
