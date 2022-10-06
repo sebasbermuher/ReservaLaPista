@@ -12,15 +12,19 @@
 
 Normalmente, cuando quieres reservar una pista, por ejemplo en tu polideportivo municipal, debes de llamar o presentarte en la oficina. Esta aplicación está pensada para que desde tu casa y sin tener que contactar con nadie lo puedas hacer en un simple click, sin depender de nadie, solamente con internet.
 
-Y es que, cada vez, el uso de estas tecnologías son más frecuentes y son una de gran ayuda para las personas.
+Y es que, cada vez, el uso de estas tecnologías son más frecuentes y son de gran ayuda para las personas.
 
 Cuenta con varias funciones, pero la principal es la de reservar espacios.
 
 ¿Por que no te atreves y la usas?
 
-Para poder acceder al sitio web debemos estar registrado como usuario. Para ello en la pantalla inicial contaremos con un login de inicio de sesión y un formulario de registro. 
-
 ## Definir el objetivo de la aplicación
+El propósito de esta aplicación es poder facilitarle a las personas el poder alquilar pistas deportivas, sin tener que hacer ninguna gestión extra. 
+Mediante esta aplicación conectamos a los usuarios directamente a nuestra base de datos, en la que ellos mismos pueden ver la disponibilidad horaria de cada espacio deportivo.
+Es una web muy intuitiva y clara, fácil de usar para todas la edades, sin necesidad de tener conocimiento avanzados de infomática.
+A parte de ayudar a los usuarios a la gestión de reservas, también es de gran ayuda para la empresa puesto que no tendría que depender de una persona encargada de realizar las reservas manualmente.
+
+
 **Tener una gran idea** o encontrar un punto del mercado al que no se esté dando un producto o servicio es el punto de partida en cada nuevo proyecto. Antes de comenzar debes **definir claramente el propósito y la misión de la aplicación web**:
 
 - **¿Qué va a hacer la aplicación?**
