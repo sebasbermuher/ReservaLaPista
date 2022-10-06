@@ -1,8 +1,17 @@
 ### Introducción
-Esta aplicación pretende gestionar los datos de colaboradores, beneficiarios y talleres que organiza una asociación. Será una herramienta útil para conocer la demanda de los beneficiaros y la disponibilidad de colaboradores que puedan atender esa demanda.
+Esta aplicación pretende gestionar las reservas de pistas deportivas de una forma cómoda y ligera. Es una herramienta muy útil ya que le ahorra tiempo al usuario, el cual, desde un simple click puede ver la disponibilidad de los espacios deportivos.
 
 ### Alcance del proyectos
 # Tareas que mi proyecto llevará a cabo:
+- Como usuario **(ROL_USER)**:
+--holaa
+
+
+
+
+
+
+
 - Permite logarse a los beneficiarios y consultar los talleres disponibles, plazas, horarios, etc.
 - Los beneficiarios podrán solicitar la matriculación en alguno de los talleres.
 - Los colaboradores podrán logarse y cambiar sus características, nuevas habilidades, modificar su disponibilidad, etc
