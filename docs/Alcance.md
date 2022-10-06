@@ -3,8 +3,8 @@ Esta aplicación pretende gestionar las reservas de pistas deportivas de una for
 
 ### Alcance del proyectos
 # Tareas que mi proyecto llevará a cabo:
-- Como usuario **(ROL_USER)**:
---holaa
+* Como usuario **(ROL_USER)**:
+
 
 
 
