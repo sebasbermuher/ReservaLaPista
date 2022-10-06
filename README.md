@@ -20,17 +20,13 @@ Cuenta con varias funciones, pero la principal es la de reservar espacios.
 
 ## Definir el objetivo de la aplicación
 El propósito de esta aplicación es poder facilitarle a las personas el poder alquilar pistas deportivas, sin tener que hacer ninguna gestión extra. 
+
 Mediante esta aplicación conectamos a los usuarios directamente a nuestra base de datos, en la que ellos mismos pueden ver la disponibilidad horaria de cada espacio deportivo.
+
 Es una web muy intuitiva y clara, fácil de usar para todas la edades, sin necesidad de tener conocimiento avanzados de infomática.
 A parte de ayudar a los usuarios a la gestión de reservas, también es de gran ayuda para la empresa puesto que no tendría que depender de una persona encargada de realizar las reservas manualmente.
 
 
-**Tener una gran idea** o encontrar un punto del mercado al que no se esté dando un producto o servicio es el punto de partida en cada nuevo proyecto. Antes de comenzar debes **definir claramente el propósito y la misión de la aplicación web**:
-
-- **¿Qué va a hacer la aplicación?**
-- **¿Cuál es su atractivo principal?** 
-- **¿Qué problema concreto va a resolver?** 
-- **¿Qué necesidad va a cubrir?**
 
 ## Prototipo de la Interfaz del proyecto
 
