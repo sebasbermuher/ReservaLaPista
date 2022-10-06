@@ -1,7 +1,7 @@
 # Título del Proyecto
 
 #### Curso Escolar 2022-2023
-#### Autor: Sebastián Bermúdez Herrera (github.com/sebasbermuher)
+#### Autor: Sebastián Bermúdez Herrera (https://github.com/sebasbermuher)
 #### Tutor: Antonio Gabriel González Casado
 #### Fecha de Inicio: 15-09-2022
 #### Fecha de Finalización: 13-12-2022
