@@ -39,7 +39,7 @@ Algunos de los requisitos funcionales son:
 - **REQ08-Eliminar reserva**: El sistema tiene un apartado para cancelar la reserva.
 - **REQ09-Pistas**: En este apartado el usuario puede ver las pistas que hay y sus datos, como por ejemplo el horario.
 
-### Stack Tecnológico
+## Stack Tecnológico
 
 Para la parte back he decidido escoger **Eclipse**, ya que es el que vengo usando y con el que me encuentro más comodo.
 En cuanto a la parte del front usaré **Visual Studio Code**, fácil de usar y con variedad de plugins.
