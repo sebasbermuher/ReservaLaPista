@@ -1,16 +1,18 @@
 package org.iesalixar.servidor.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.springframework.core.annotation.Order;
 
 @Entity
 @Table(name = "pistas")
@@ -34,6 +36,9 @@ public class Pista implements Serializable {
 
 	@Column(nullable = false)
 	private String duracion;
+
+	@OneToMany(mappedBy = "pista", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Reserva> reserva = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -83,9 +88,17 @@ public class Pista implements Serializable {
 		this.duracion = duracion;
 	}
 
+	public Set<Reserva> getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(Set<Reserva> reserva) {
+		this.reserva = reserva;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(apertura, cierre, deporte, duracion, id, nombre);
+		return Objects.hash(apertura, cierre, deporte, duracion, id, nombre, reserva);
 	}
 
 	@Override
@@ -99,7 +112,16 @@ public class Pista implements Serializable {
 		Pista other = (Pista) obj;
 		return Objects.equals(apertura, other.apertura) && Objects.equals(cierre, other.cierre)
 				&& Objects.equals(deporte, other.deporte) && Objects.equals(duracion, other.duracion)
-				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre);
+				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
+				&& Objects.equals(reserva, other.reserva);
+	}
+	
+	
+	//HELPERS ELIMINAR RESERVA
+	public void removeReserva(Usuario usuario) {
+		Reserva reserva = new Reserva();
+		usuario.getReserva().remove(reserva);
+		this.reserva.remove(reserva);
 	}
 
 }

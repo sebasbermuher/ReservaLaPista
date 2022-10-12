@@ -3,7 +3,9 @@ package org.iesalixar.servidor.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.iesalixar.servidor.model.Pista;
 import org.iesalixar.servidor.model.Reserva;
+import org.iesalixar.servidor.model.Usuario;
 import org.iesalixar.servidor.repository.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,24 @@ public class ReservaServiceImpl implements ReservaService {
 			return reserva;
 		}
 		return new ArrayList<Reserva>();
+	}
+
+	@Override
+	public Reserva findUsuarioPistaById(Usuario id, Pista id1) {
+//		if (id != null && id1 != null) {
+//
+//			Reserva reserva = (Reserva) reservaRepo.findByUsuarioPista(id, id1);
+//			return reserva;
+//		}
+
+		return null;
+	}
+
+	@Override
+	public void deleteUsuarioPistaById(Reserva reserva) {
+		reservaRepo.delete(reserva);
+
+		
 	}
 
 }

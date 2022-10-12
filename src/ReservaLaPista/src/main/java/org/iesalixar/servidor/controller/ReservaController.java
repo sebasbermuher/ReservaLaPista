@@ -53,24 +53,6 @@ public class ReservaController {
 		return "reserva/reservar";
 	}
 
-//	@PostMapping("/reservar")
-//	public String reservarPost(@ModelAttribute ReservaDTO reservaDTO) {
-//
-//		Reserva reserva = new Reserva();
-//		reserva.setId_usuario(reserva.getId_usuario());
-//		reserva.setId_pista(reserva.getId_pista());
-//		reserva.setFecha(reserva.getFecha());
-//		reserva.setHora_inicio(reserva.getHora_inicio());
-//		reserva.setHora_fin(reserva.getHora_fin());
-//
-//		if (reservaService.insertReserva(reserva) == null) {
-//			return "redirect:/reservar?error=Existe&Reserva=" + reservaDTO.getId_usuario() + reservaDTO.getId_pista();
-//		}
-//
-//		return "redirect:/menu";
-//
-//	}
-
 	@RequestMapping("/reservas")
 	public String todasReservas(Model model, Principal principal) {
 
@@ -95,8 +77,62 @@ public class ReservaController {
 		List<Reserva> reserva = reservaService.getAllReservas();
 
 		model.addAttribute("reserva", reserva);
-		
+
 		return "reserva/totalReservas";
 	}
+
+	@GetMapping("/reservas/addReserva")
+	public String addReservaGet(@RequestParam(required = false, name = "error") String error, Model model, Principal principal) {
+
+		// Para mostrar nombre y apellidos del usuario que ha iniciado sesion
+				Usuario user = usuarioService.getUsuarioByUserName(principal.getName());
+				model.addAttribute("user", user);
+		// -------------------------------------
+				
+		ReservaDTO reservaDTO = new ReservaDTO();
+		List<Usuario> usuario = usuarioService.getAllUsuarios();
+		List<Pista> pista = pistaService.getAllPistas();
+
+		model.addAttribute("reservaDTO", reservaDTO);
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("pista", pista);
+		model.addAttribute("error", error);
+
+		return "reserva/addReserva";
+	}
+
+
+	@PostMapping("/reservas/addReserva")
+	public String addReservaPost(@ModelAttribute ReservaDTO reservaDTO, Model model) {
+		
+		Reserva reserva = new Reserva();
+		reserva.setUsuario(reservaDTO.getId_usuario());
+		reserva.setPista(reservaDTO.getId_pista());
+		reserva.setFecha(reservaDTO.getFecha());
+		reserva.setHora_inicio(reservaDTO.getHora_inicio());
+		reserva.setHora_fin(reservaDTO.getHora_fin());
+
+		if (reservaService.insertReserva(reserva) == null) {
+			return "redirect:/reservas/addReserva?error=Existe&Reserva=" + reservaDTO.getId_usuario()
+					+ reservaDTO.getId_pista();
+		}
+		return "redirect:/reservas";
+	}
+	
+	
+//	@GetMapping("/reservas/delete")
+//	public String eliminarReserva(@RequestParam(required = true, name = "pista") Pista pista,
+//			@RequestParam(required = true, name = "usuario") Usuario usuario, Model model) {
+//		
+//		Reserva reserva = reservaService.findUsuarioPistaById(usuario, pista);
+//
+//		if (reserva != null) {
+//			reservaService.deleteUsuarioPistaById(reserva);
+//			return "redirect:/reservas";
+//
+//		} else {
+//			return "redirect:/reservas/";
+//		}
+//	}
 
 }

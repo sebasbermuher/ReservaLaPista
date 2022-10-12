@@ -1,16 +1,18 @@
 package org.iesalixar.servidor.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.springframework.core.annotation.Order;
 
 @Entity
 @Table(name = "usuarios")
@@ -62,6 +64,9 @@ public class Usuario implements Serializable {
 
 	@Column(nullable = false)
 	private String fecha_registro;
+
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Reserva> reserva = new HashSet<>();
 
 	public Usuario() {
 		// TODO Auto-generated constructor stub
@@ -187,10 +192,17 @@ public class Usuario implements Serializable {
 		this.fecha_registro = fecha_registro;
 	}
 
+	public Set<Reserva> getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(Set<Reserva> reserva) {
+		this.reserva = reserva;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(apellido1, apellido2, email, fecha_nacimiento, fecha_registro, id, localidad, nif, nombre,
-				password, provincia, role, sexo, telefono, username);
+		return Objects.hash(id, nif);
 	}
 
 	@Override
@@ -202,14 +214,14 @@ public class Usuario implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(apellido1, other.apellido1) && Objects.equals(apellido2, other.apellido2)
-				&& Objects.equals(email, other.email) && Objects.equals(fecha_nacimiento, other.fecha_nacimiento)
-				&& Objects.equals(fecha_registro, other.fecha_registro) && Objects.equals(id, other.id)
-				&& Objects.equals(localidad, other.localidad) && Objects.equals(nif, other.nif)
-				&& Objects.equals(nombre, other.nombre) && Objects.equals(password, other.password)
-				&& Objects.equals(provincia, other.provincia) && Objects.equals(role, other.role)
-				&& Objects.equals(sexo, other.sexo) && Objects.equals(telefono, other.telefono)
-				&& Objects.equals(username, other.username);
+		return Objects.equals(id, other.id) && Objects.equals(nif, other.nif);
+	}
+
+	// HELPERS ELIMINAR RESERVA
+	public void removeReserva(Pista pista) {
+		Reserva reserva = new Reserva();
+		pista.getReserva().remove(reserva);
+		this.reserva.remove(reserva);
 	}
 
 }

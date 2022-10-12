@@ -1,10 +1,12 @@
 package org.iesalixar.servidor.dto;
 
+import org.iesalixar.servidor.model.Pista;
+import org.iesalixar.servidor.model.Usuario;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class ReservaDTO {
-	private int id_usuario;
-	private int id_pista;
+	private Usuario id_usuario;
+	private Pista id_pista;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String fecha;
 	@DateTimeFormat(pattern = "hh:mm tt")
@@ -16,19 +18,19 @@ public class ReservaDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getId_usuario() {
+	public Usuario getId_usuario() {
 		return id_usuario;
 	}
 
-	public void setId_usuario(int id_usuario) {
+	public void setId_usuario(Usuario id_usuario) {
 		this.id_usuario = id_usuario;
 	}
 
-	public int getId_pista() {
+	public Pista getId_pista() {
 		return id_pista;
 	}
 
-	public void setId_pista(int id_pista) {
+	public void setId_pista(Pista id_pista) {
 		this.id_pista = id_pista;
 	}
 
