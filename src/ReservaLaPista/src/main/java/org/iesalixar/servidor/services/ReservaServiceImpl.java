@@ -54,4 +54,21 @@ public class ReservaServiceImpl implements ReservaService {
 		
 	}
 
+	@Override
+	public Reserva findReservaByIdModel(Long id) {
+		if (id != null) {
+			return reservaRepo.findById(id).get();
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public Reserva eliminarReserva(Reserva reserva) {
+		if (reserva != null) {
+			reservaRepo.delete(reserva);
+		}
+		return null;
+	}
+
 }

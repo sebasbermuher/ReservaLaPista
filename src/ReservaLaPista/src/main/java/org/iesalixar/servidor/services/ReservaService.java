@@ -16,6 +16,10 @@ public interface ReservaService {
 	
 	public Reserva findUsuarioPistaById(Usuario id, Pista id1);
 	public void deleteUsuarioPistaById(Reserva reserva);
+	
+	public Reserva findReservaByIdModel(Long id);
+	public Reserva eliminarReserva(Reserva reserva);
+
 
 
 

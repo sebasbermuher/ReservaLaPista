@@ -11,8 +11,8 @@
 						<tr>
 							<th>Usuario</th>
 							<th>Nombre y apellidos</th>
-							<th>Pista</th>
 							<th>Deporte</th>
+							<th>Pista</th>
 							<th>Fecha</th>
 							<th>Hora de inicio</th>
 							<th>Hora fin</th>
@@ -22,13 +22,11 @@
 						<tr th:each="r : ${reserva}">
 							<td th:text="${r.usuario.getUsername()}"></td>
 							<td th:text="${r.usuario.getNombre() + ', ' + r.usuario.getApellido1() + ' ' + r.usuario.getApellido2()}"></td>
+							<td th:text="${r.pista.getDeporte()}"></td>	
 							<td th:text="${r.pista.getNombre()}"></td>
-							<td th:text="${r.pista.getDeporte()}"></td>					
 							<td th:text="${r.getFecha()}"></td>
 							<td th:text="${r.getHora_inicio()}"></td>
 							<td th:text="${r.getHora_fin()}"></td>
-
-							
 						</tr>
 					</tbody>
 				</table>

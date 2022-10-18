@@ -5,6 +5,8 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
@@ -36,6 +38,7 @@ public class Reserva implements Serializable {
 	}
 
 	public Reserva(Usuario usuario, Pista pista, String fecha, String hora_inicio, String hora_fin) {
+		super();
 		this.usuario = usuario;
 		this.pista = pista;
 		this.fecha = fecha;

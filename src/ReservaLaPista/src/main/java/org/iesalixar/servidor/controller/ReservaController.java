@@ -40,17 +40,31 @@ public class ReservaController {
 		model.addAttribute("user", user);
 		// -------------------------------------
 
-		List<Usuario> usuario = usuarioService.getAllUsuarios();
-		model.addAttribute("usuario", usuario);
-
-		List<Pista> pista = pistaService.getAllPistas();
-		model.addAttribute("pista", pista);
-
 		ReservaDTO reservaDTO = new ReservaDTO();
+		List<Pista> pista = pistaService.getAllPistas();
+
 		model.addAttribute("reservaDTO", reservaDTO);
+		model.addAttribute("usuario", user);
+		model.addAttribute("pista", pista);
 		model.addAttribute("error", error);
 
 		return "reserva/reservar";
+	}
+
+	@PostMapping("/reservar")
+	public String reservarPost(@ModelAttribute ReservaDTO reservaDTO, Model model) {
+
+		Reserva reserva = new Reserva();
+		reserva.setUsuario(reservaDTO.getId_usuario());
+		reserva.setPista(reservaDTO.getId_pista());
+		reserva.setFecha(reservaDTO.getFecha());
+		reserva.setHora_inicio(reservaDTO.getHora_inicio());
+		reserva.setHora_fin(reservaDTO.getHora_fin());
+
+		if (reservaService.insertReserva(reserva) == null) {
+			return "redirect:/reservar?error=Existe&Reserva=" + reservaDTO.getId_usuario() + reservaDTO.getId_pista();
+		}
+		return "redirect:/reservas";
 	}
 
 	@RequestMapping("/reservas")
@@ -61,19 +75,6 @@ public class ReservaController {
 		model.addAttribute("user", user);
 		// -------------------------------------
 
-//		List<Reserva> reservas = reservaService.getAllReservas();
-//		model.addAttribute("reservas", reservas);
-//		
-//		List<Usuario> usuario = usuarioService.getAllUsuarios();
-//		model.addAttribute("usuario", usuario);
-//
-//		List<Pista> pista = pistaService.getAllPistas();
-//		model.addAttribute("pista", pista);
-//		
-//		
-//		ReservaDTO reservaDTO = new ReservaDTO();
-//		model.addAttribute("reservaDTO", reservaDTO);
-
 		List<Reserva> reserva = reservaService.getAllReservas();
 
 		model.addAttribute("reserva", reserva);
@@ -82,13 +83,14 @@ public class ReservaController {
 	}
 
 	@GetMapping("/reservas/addReserva")
-	public String addReservaGet(@RequestParam(required = false, name = "error") String error, Model model, Principal principal) {
+	public String addReservaGet(@RequestParam(required = false, name = "error") String error, Model model,
+			Principal principal) {
 
 		// Para mostrar nombre y apellidos del usuario que ha iniciado sesion
-				Usuario user = usuarioService.getUsuarioByUserName(principal.getName());
-				model.addAttribute("user", user);
+		Usuario user = usuarioService.getUsuarioByUserName(principal.getName());
+		model.addAttribute("user", user);
 		// -------------------------------------
-				
+
 		ReservaDTO reservaDTO = new ReservaDTO();
 		List<Usuario> usuario = usuarioService.getAllUsuarios();
 		List<Pista> pista = pistaService.getAllPistas();
@@ -101,10 +103,9 @@ public class ReservaController {
 		return "reserva/addReserva";
 	}
 
-
 	@PostMapping("/reservas/addReserva")
 	public String addReservaPost(@ModelAttribute ReservaDTO reservaDTO, Model model) {
-		
+
 		Reserva reserva = new Reserva();
 		reserva.setUsuario(reservaDTO.getId_usuario());
 		reserva.setPista(reservaDTO.getId_pista());
@@ -118,8 +119,7 @@ public class ReservaController {
 		}
 		return "redirect:/reservas";
 	}
-	
-	
+
 //	@GetMapping("/reservas/delete")
 //	public String eliminarReserva(@RequestParam(required = true, name = "pista") Pista pista,
 //			@RequestParam(required = true, name = "usuario") Usuario usuario, Model model) {
