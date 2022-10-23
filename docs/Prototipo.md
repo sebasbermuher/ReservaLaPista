@@ -1,6 +1,8 @@
 ﻿Esta pantalla es la primera pantalla con la que se encontrará el usuario. Se encargará de que el usuario inicie sesión para poder entrar a la web. 
 <p align="center">
 ![](Aspose.Words.ecd0b193-486d-4722-bccf-2b3cd92f2e7c.001.jpeg)
+ <img src="Aspose.Words.ecd0b193-486d-4722-bccf-2b3cd92f2e7c.001.jpeg"/>
+
 </p>
 
 Si el usuario no tiene cuenta creada no tendrá acceso a la web. En esta página el usuario podrá registrarse. 
