@@ -65,7 +65,7 @@ Aquí vemos la lista que nos genera con todos los datos del usuario, cuando le d
 Pantalla principal de ajuste. Cuenta con un menú con tabs (pestañas). En el primero (datos), el usuario podrá modificar sus datos personales. 
 
 <p align="center">
- <img src="Pantalla11.jpeg"/>
+ <img src="img/prototipo/Pantalla11.jpeg"/>
 </p>
 
 En esta opción de ajustes, el usuario podrá modificar su contraseña. 
