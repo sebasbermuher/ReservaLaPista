@@ -1,0 +1,11 @@
+.carousel-control-prev-icon, .carousel-control-next-icon, .carousel-indicators {
+  filter: invert(250%);
+}
+
+ img {
+  width:1500;
+  height:360px;
+  display:block;
+  margin:auto;
+  margin-bottom: 5%;
+}
