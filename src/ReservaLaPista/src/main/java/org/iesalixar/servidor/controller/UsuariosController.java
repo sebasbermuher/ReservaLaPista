@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class UsuariosController {
@@ -55,7 +56,7 @@ public class UsuariosController {
 	}
 
 	@PostMapping("/usuarios/addUsuario")
-	public String addUsuarioPost(@ModelAttribute UsuarioDTO usuarioDTO) {
+	public String addUsuarioPost(@ModelAttribute UsuarioDTO usuarioDTO, RedirectAttributes atribute) {
 
 		Usuario usuario = new Usuario();
 		usuario.setNif(usuarioDTO.getNif());
@@ -73,13 +74,14 @@ public class UsuariosController {
 		usuario.setFecha_nacimiento(usuarioDTO.getFecha_nacimiento());
 //		usuario.setFecha_registro(usuarioDTO.getFecha_registro());
 
-		String fechaActual = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
-		usuario.setFecha_registro(fechaActual);
+//		String fechaActual = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
+//		usuario.setFecha_registro(fechaActual);
 
 		if (usuarioService.insertUsuario(usuario) == null) {
 			return "redirect:/usuarios/addUsuario?error=Existe&Usuario=" + usuarioDTO.getUsername();
 		}
 
+		atribute.addFlashAttribute("success", "Usuario ''" + usuarioDTO.getUsername() + "'' guardado con éxito.");
 		return "redirect:/usuarios";
 	}
 
@@ -98,23 +100,26 @@ public class UsuariosController {
 	}
 
 	@PostMapping("/usuarios/edit")
-	public String updateUsuarioPost(@ModelAttribute Usuario usu, UsuarioDTO usuarioDTO) {
+	public String updateUsuarioPost(@ModelAttribute Usuario usu, UsuarioDTO usuarioDTO, RedirectAttributes atribute) {
 
 		usu.setPassword(new BCryptPasswordEncoder(15).encode(usu.getPassword()));
 
 		if (usuarioService.actualizarUsuario(usu) == null) {
 			return "redirect:/usuarios/edit?error=error&user" + usu.getId();
 		}
+		atribute.addFlashAttribute("edit", "Usuario ''" + usu.getUsername() + "'' editado con éxito.");
 		return "redirect:/usuarios";
 	}
 
 	@GetMapping("/usuarios/delete")
-	public String eliminarUsuario(@RequestParam(required = true, name = "user") String user, Model model) {
+	public String eliminarUsuario(@RequestParam(required = true, name = "user") String user, Model model,
+			RedirectAttributes atribute) {
 
 		Usuario usuario = usuarioService.findUsuarioByIdModel(Long.parseLong(user));
 
 		if (usuario != null) {
 			usuarioService.eliminarUsuario(usuario);
+			atribute.addFlashAttribute("warning", "Usuario ''" + usuario.getUsername() + "'' eliminado con éxito.");
 			return "redirect:/usuarios?codigo=" + user;
 		} else {
 			return "redirect:/usuarios/";

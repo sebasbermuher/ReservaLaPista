@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LoginController {
@@ -28,10 +29,15 @@ public class LoginController {
 	}
 
 	@GetMapping("/register")
-	public String registerGet(Model model) {
+	public String registerGet(@RequestParam(required = false, name = "errorUsername") String errorUsername,
+			@RequestParam(required = false, name = "errorEmail") String errorEmail,
+			@RequestParam(required = false, name = "errorDNI") String errorDNI, Model model) {
 
 		UsuarioDTO userDTO = new UsuarioDTO();
 		model.addAttribute("userDTO", userDTO);
+		model.addAttribute("errorUsername", errorUsername);
+		model.addAttribute("errorEmail", errorEmail);
+		model.addAttribute("errorDNI", errorDNI);
 
 		return "login/register";
 	}
@@ -54,13 +60,19 @@ public class LoginController {
 		userBD.setRole("ROLE_USER");
 		userBD.setFecha_nacimiento(usuario.getFecha_nacimiento());
 
-		String fechaActual = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
+		String fechaActual = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
 		userBD.setFecha_registro(fechaActual);
 
 		userBD = usuarioService.insertUsuario(userBD);
 
 		if (userBD == null) {
-			return "redirect:/register";
+			if (usuarioService.getUsuarioByUserName(usuario.getUsername()) != null) {
+				return "redirect:/register?errorUsername=Existe&usuario";
+			} else if (usuarioService.getUsuarioByEmail(usuario.getEmail()) != null) {
+				return "redirect:/register?errorEmail=Email&registrado";
+			} else if (usuarioService.getUsuarioByNif(usuario.getNif()) != null) {
+				return "redirect:/register?errorDNI=dni&registrado";
+			}
 		}
 
 		return "redirect:/";
@@ -70,7 +82,7 @@ public class LoginController {
 	public String menu(Model model, Principal principal) {
 
 		// Para mostrar nombre y apellidos del usuario que ha iniciado sesion
-		//http://www.it.uc3m.es/jaf/aw/practicas/5-spring/
+		// http://www.it.uc3m.es/jaf/aw/practicas/5-spring/
 		Usuario user = usuarioService.getUsuarioByUserName(principal.getName());
 		model.addAttribute("user", user);
 

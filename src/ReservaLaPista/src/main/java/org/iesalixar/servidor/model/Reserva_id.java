@@ -44,4 +44,6 @@ public class Reserva_id implements Serializable {
 		return Objects.equals(pista, other.pista) && Objects.equals(usuario, other.usuario);
 	}
 
+	
+
 }

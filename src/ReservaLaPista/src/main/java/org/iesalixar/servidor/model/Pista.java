@@ -34,9 +34,6 @@ public class Pista implements Serializable {
 	@Column(nullable = false)
 	private String cierre;
 
-	@Column(nullable = false)
-	private String duracion;
-
 	@OneToMany(mappedBy = "pista", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Reserva> reserva = new HashSet<>();
 
@@ -80,14 +77,6 @@ public class Pista implements Serializable {
 		this.cierre = cierre;
 	}
 
-	public String getDuracion() {
-		return duracion;
-	}
-
-	public void setDuracion(String duracion) {
-		this.duracion = duracion;
-	}
-
 	public Set<Reserva> getReserva() {
 		return reserva;
 	}
@@ -98,7 +87,7 @@ public class Pista implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(apertura, cierre, deporte, duracion, id, nombre, reserva);
+		return Objects.hash(apertura, cierre, deporte, id, nombre, reserva);
 	}
 
 	@Override
@@ -111,13 +100,11 @@ public class Pista implements Serializable {
 			return false;
 		Pista other = (Pista) obj;
 		return Objects.equals(apertura, other.apertura) && Objects.equals(cierre, other.cierre)
-				&& Objects.equals(deporte, other.deporte) && Objects.equals(duracion, other.duracion)
-				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(reserva, other.reserva);
+				&& Objects.equals(deporte, other.deporte) && Objects.equals(id, other.id)
+				&& Objects.equals(nombre, other.nombre) && Objects.equals(reserva, other.reserva);
 	}
-	
-	
-	//HELPERS ELIMINAR RESERVA
+
+	// HELPERS ELIMINAR RESERVA
 	public void removeReserva(Usuario usuario) {
 		Reserva reserva = new Reserva();
 		usuario.getReserva().remove(reserva);
