@@ -1,6 +1,7 @@
 package org.iesalixar.servidor.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,42 +9,61 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "reserva")
-@IdClass(Reserva_id.class)
+@Table(name = "reserva", uniqueConstraints = @UniqueConstraint(columnNames = { "fecha", "hora_inicio" }))
 public class Reserva implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	@ManyToOne
 	@JoinColumn(name = "id_usuario", insertable = false, updatable = false)
 	private Usuario usuario;
 
-	@Id
 	@ManyToOne
 	@JoinColumn(name = "id_pista", insertable = false, updatable = false)
 	private Pista pista;
 
-	private String fecha;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fecha;
 
+	@Column(name = "hora_inicio")
 	private String hora_inicio;
-
-	private String hora_fin;
 
 	public Reserva() {
 	}
 
-	public Reserva(Usuario usuario, Pista pista, String fecha, String hora_inicio, String hora_fin) {
+	public Reserva(Long id, Usuario usuario, Pista pista, Date fecha, String hora_inicio) {
 		super();
+		this.id = id;
 		this.usuario = usuario;
 		this.pista = pista;
 		this.fecha = fecha;
 		this.hora_inicio = hora_inicio;
-		this.hora_fin = hora_fin;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Usuario getUsuario() {
@@ -62,11 +82,11 @@ public class Reserva implements Serializable {
 		this.pista = pista;
 	}
 
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
@@ -78,17 +98,9 @@ public class Reserva implements Serializable {
 		this.hora_inicio = hora_inicio;
 	}
 
-	public String getHora_fin() {
-		return hora_fin;
-	}
-
-	public void setHora_fin(String hora_fin) {
-		this.hora_fin = hora_fin;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(fecha, hora_fin, hora_inicio, pista, usuario);
+		return Objects.hash(fecha, hora_inicio, id, pista, usuario);
 	}
 
 	@Override
@@ -100,8 +112,8 @@ public class Reserva implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Reserva other = (Reserva) obj;
-		return Objects.equals(fecha, other.fecha) && Objects.equals(hora_fin, other.hora_fin)
-				&& Objects.equals(hora_inicio, other.hora_inicio) && Objects.equals(pista, other.pista)
+		return Objects.equals(fecha, other.fecha) && Objects.equals(hora_inicio, other.hora_inicio)
+				&& Objects.equals(id, other.id) && Objects.equals(pista, other.pista)
 				&& Objects.equals(usuario, other.usuario);
 	}
 

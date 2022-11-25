@@ -15,9 +15,8 @@ public class UsuarioDTO {
 	private String telefono;
 	private String sexo;
 	private String role;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private String fecha_nacimiento;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String fecha_registro;
 
 	public UsuarioDTO() {

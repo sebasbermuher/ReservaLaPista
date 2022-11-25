@@ -1,6 +1,7 @@
 package org.iesalixar.servidor.controller;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 import org.iesalixar.servidor.dto.ReservaDTO;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ReservaController {
@@ -51,19 +53,24 @@ public class ReservaController {
 		return "reserva/reservar";
 	}
 
+	public List<Reserva> findReservas(Long idReserva, Date fechaReserva) {
+		return reservaService.findReservasByIdAndFecha(idReserva, fechaReserva);
+	}
+
 	@PostMapping("/reservar")
-	public String reservarPost(@ModelAttribute ReservaDTO reservaDTO, Model model) {
+	public String reservarPost(@ModelAttribute ReservaDTO reservaDTO, Model model, RedirectAttributes atribute) {
 
 		Reserva reserva = new Reserva();
 		reserva.setUsuario(reservaDTO.getId_usuario());
 		reserva.setPista(reservaDTO.getId_pista());
 		reserva.setFecha(reservaDTO.getFecha());
 		reserva.setHora_inicio(reservaDTO.getHora_inicio());
-		reserva.setHora_fin(reservaDTO.getHora_fin());
+//		reserva.setHora_fin(reservaDTO.getHora_fin());
 
 		if (reservaService.insertReserva(reserva) == null) {
 			return "redirect:/reservar?error=Existe&Reserva=" + reservaDTO.getId_usuario() + reservaDTO.getId_pista();
 		}
+		atribute.addFlashAttribute("success", "Reserva realizada con éxito.");
 		return "redirect:/reservas";
 	}
 
@@ -104,19 +111,20 @@ public class ReservaController {
 	}
 
 	@PostMapping("/reservas/addReserva")
-	public String addReservaPost(@ModelAttribute ReservaDTO reservaDTO, Model model) {
+	public String addReservaPost(@ModelAttribute ReservaDTO reservaDTO, Model model, RedirectAttributes atribute) {
 
 		Reserva reserva = new Reserva();
 		reserva.setUsuario(reservaDTO.getId_usuario());
 		reserva.setPista(reservaDTO.getId_pista());
 		reserva.setFecha(reservaDTO.getFecha());
 		reserva.setHora_inicio(reservaDTO.getHora_inicio());
-		reserva.setHora_fin(reservaDTO.getHora_fin());
+//		reserva.setHora_fin(reservaDTO.getHora_fin());
 
 		if (reservaService.insertReserva(reserva) == null) {
 			return "redirect:/reservas/addReserva?error=Existe&Reserva=" + reservaDTO.getId_usuario()
 					+ reservaDTO.getId_pista();
 		}
+		atribute.addFlashAttribute("success", "Reserva realizada con éxito. Usuario: " + reservaDTO.getId_usuario());
 		return "redirect:/reservas";
 	}
 
