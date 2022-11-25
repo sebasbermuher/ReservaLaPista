@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class PistasController {
@@ -57,19 +58,19 @@ public class PistasController {
 	}
 
 	@PostMapping("/pistas/addPista")
-	public String addPistaPost(@ModelAttribute PistaDTO pistaDTO) {
+	public String addPistaPost(@ModelAttribute PistaDTO pistaDTO, RedirectAttributes atribute) {
 
 		Pista pista = new Pista();
 		pista.setNombre(pistaDTO.getNombre());
 		pista.setDeporte(pistaDTO.getDeporte());
 		pista.setApertura(pistaDTO.getApertura());
 		pista.setCierre(pistaDTO.getCierre());
-		pista.setDuracion(pistaDTO.getDuracion());
 
 		if (pistaService.insertPista(pista) == null) {
 			return "redirect:/pistas/addPista?error=Existe&NombrePista=" + pistaDTO.getNombre();
 		}
-
+		
+		atribute.addFlashAttribute("success", "Pista ''" + pistaDTO.getNombre() + "'' guardada con éxito.");
 		return "redirect:/pistas";
 
 	}
@@ -89,17 +90,18 @@ public class PistasController {
 	}
 
 	@PostMapping("/pistas/edit")
-	public String updatePistaPost(@ModelAttribute Pista pi) {
+	public String updatePistaPost(@ModelAttribute Pista pi, RedirectAttributes atribute) {
 
 		if (pistaService.actualizarPista(pi) == null) {
 			return "redirect:/pistas/edit?error=error&pist" + pi.getId();
 		}
+		atribute.addFlashAttribute("edit", "Pista ''" + pi.getNombre() + "'' editada con éxito.");
 		return "redirect:/pistas";
 	}
 
 	@GetMapping("/pistas/delete")
 	public String eliminarPista(@RequestParam(required = true, name = "pist") String pist, Model model,
-			Principal principal) {
+			Principal principal, RedirectAttributes atribute) {
 
 		// Para mostrar nombre y apellidos del usuario que ha iniciado sesion
 		Usuario user = usuarioService.getUsuarioByUserName(principal.getName());
@@ -110,6 +112,7 @@ public class PistasController {
 
 		if (pista != null) {
 			pistaService.eliminarPista(pista);
+			atribute.addFlashAttribute("warning", "Pista ''" + pista.getNombre() + "'' eliminada con éxito.");
 			return "redirect:/pistas?codigo=" + pist;
 		} else {
 			return "redirect:/pistas/";

@@ -1,6 +1,7 @@
 package org.iesalixar.servidor.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.iesalixar.servidor.model.Pista;
@@ -51,22 +52,28 @@ public class ReservaServiceImpl implements ReservaService {
 	public void deleteUsuarioPistaById(Reserva reserva) {
 		reservaRepo.delete(reserva);
 
-		
 	}
 
 	@Override
 	public Reserva findReservaByIdModel(Long id) {
 		if (id != null) {
 			return reservaRepo.findById(id).get();
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	@Override
 	public Reserva eliminarReserva(Reserva reserva) {
 		if (reserva != null) {
 			reservaRepo.delete(reserva);
+		}
+		return null;
+	}
+
+	@Override
+	public List<Reserva> findReservasByIdAndFecha(Long id, Date fecha) {
+		if (id != null || fecha != null) {
+			return reservaRepo.findReservasByIdAndFecha(id, fecha);
 		}
 		return null;
 	}

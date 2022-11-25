@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head th:replace="fragments/bootstrap::head(title='Patrocinadores')"></head>
-<link rel="stylesheet" type="text/css" href="static/css/patrocinadores.css"
-	th:href="@{/css/patrocinadores.css}">
+<link rel="stylesheet" type="text/css" href="static/css/patrocinadores.css" th:href="@{/css/patrocinadores.css}">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="/js/patrocinadores.js" defer></script>
+
+
 <body>
-<header th:insert="fragments/parts::barra"></header>
+	<header th:insert="fragments/parts::barra"></header>
 
-
+	<!--
 <div id="carouselExampleCaptions" class="carousel slide"  data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -37,10 +41,17 @@
     <span class="visually-hidden">Siguiente</span>
   </button>
 </div>
-			
-	<br>
-	<br>
-	<footer th:insert="fragments/parts::pie"></footer>
+-->
+
+
 
 </body>
+
+
+<br>
+<br>
+<footer th:insert="fragments/parts::pie"></footer>
+
+</body>
+
 </html>

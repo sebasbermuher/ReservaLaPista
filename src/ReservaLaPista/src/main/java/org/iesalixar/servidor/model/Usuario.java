@@ -1,6 +1,7 @@
 package org.iesalixar.servidor.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -14,9 +15,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,17 +67,44 @@ public class Usuario implements Serializable {
 	private String role;
 
 	@Column(nullable = false)
-//	@Temporal(TemporalType.DATE)
 	private String fecha_nacimiento;
 
 	@Column(nullable = false)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private String fecha_registro;
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Reserva> reserva = new HashSet<>();
 
+//	@PrePersist
+//	public void prePersist() {
+//		this.fecha_registro = new Date();
+//	}
+
 	public Usuario() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Usuario(Long id, String nif, String nombre, String apellido1, String apellido2, String email,
+			String username, String password, String localidad, String provincia, String telefono, String sexo,
+			String role, String fecha_nacimiento, String fecha_registro, Set<Reserva> reserva) {
+		super();
+		this.id = id;
+		this.nif = nif;
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.localidad = localidad;
+		this.provincia = provincia;
+		this.telefono = telefono;
+		this.sexo = sexo;
+		this.role = role;
+		this.fecha_nacimiento = fecha_nacimiento;
+		this.fecha_registro = fecha_registro;
+		this.reserva = reserva;
 	}
 
 	public Long getId() {

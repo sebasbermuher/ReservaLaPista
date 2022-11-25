@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+/*@import url(https://fonts.googleapis.com/css?family=Roboto:300);*/
 
 #ojo {
 	cursor: pointer;
@@ -57,7 +57,7 @@ option{
 }
 
 .form button {
-	font-family: "Roboto", sans-serif;
+	/*font-family: "Roboto", sans-serif;*/
 	text-transform: uppercase;
 	outline: 0;
 	background: #4CAF50;
@@ -127,7 +127,7 @@ option{
 body {
 	background: url(../img/background.jpg) no-repeat center center fixed;
 	background-size: cover;
-	font-family: "Roboto", sans-serif;
+	/*font-family: "Roboto", sans-serif;*/
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
