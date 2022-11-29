@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 /*
  * CLASE DONDE ESTABLECEREMOS LA CONFIGURACION DE
@@ -60,7 +59,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         .antMatchers(resources).permitAll()  
         .antMatchers("/","/login","/register").permitAll()
 		.antMatchers("/usuarios","/usuarios/addUsuario","/usuarios/edit","/usuarios/delete").hasRole("ADMIN")
-		.antMatchers("/pistas/addPista","/pistas/edit","/pistas/delete").hasRole("ADMIN")
+		.antMatchers("/pistas","/pistas/addPista","/pistas/edit","/pistas/delete").hasRole("ADMIN")
+		.antMatchers("/reservas").hasRole("ADMIN")
 		.antMatchers("/menu").authenticated()
             .anyRequest().authenticated()
             .and()

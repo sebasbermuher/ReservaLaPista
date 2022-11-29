@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8" />
 	<div th:replace="fragments/bootstrap::head2(title='Pistas')" />
 	<link rel="stylesheet" type="text/css" href="static/css/pistas.css" th:href="@{/css/pistas.css}">
 	<link rel="stylesheet" type="text/css" href="static/css/dataTable.css" th:href="@{/css/dataTable.css}" />
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="/js/dataTable.js" th:href="@{/js/dataTable.js}" defer></script>
+
+
 </head>
 
 <body>
@@ -59,6 +63,7 @@
 						<td><a type="button" class="btn btn-danger" th:href="@{'/pistas/delete?pist='+${p.getId()}}"><i
 									class="far fa-trash-alt"></i></a>
 						</td>
+						<!-- <a href="#" onclick="return confirm('Estás seguro que deseas eliminar el registro?');">Eliminar registro</a> -->
 					</tr>
 				</tbody>
 			</table>
@@ -68,4 +73,5 @@
 	<br>
 	<footer th:insert="fragments/parts::pie"></footer>
 </body>
+
 </html>

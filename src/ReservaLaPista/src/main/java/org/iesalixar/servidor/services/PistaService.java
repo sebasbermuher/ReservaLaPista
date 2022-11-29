@@ -3,7 +3,6 @@ package org.iesalixar.servidor.services;
 import java.util.List;
 
 import org.iesalixar.servidor.model.Pista;
-import org.iesalixar.servidor.model.Usuario;
 
 public interface PistaService {
 

@@ -11,6 +11,7 @@
                <input type="text" class="form-control" id="username" name="username" th:field="*{username}" required placeholder="Usuario">
                <h6 class="text-danger" th:if="${errorUsername!=null}" th:text="${'Usuario no disponible.'}"></h6>
                <input type="password" class="form-control" id="password" name="password" th:field="*{password}" required placeholder="Contraseña">
+               <h6 class="text-danger" th:if="${errorPassword!=null}" th:text="${'La contraseña tiene que tener mínimo 5 caracteres.'}"></h6>
                <input type="email" class="form-control" id="email" name="email" th:field="*{email}" required placeholder="Email">
                <h6 class="text-danger" th:if="${errorEmail!=null}" th:text="${'Este email ya esta registrado.'}"></h6>
                <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" required placeholder="Nombre">
@@ -27,7 +28,6 @@
                <input type="tel" pattern="[0-9]{3}[0-9]{2}[0-9]{2}[0-9]{2}" class="form-control" id="telefono" name="telefono" th:field="*{telefono}" required placeholder="Telefono">
                <input type="text" class="form-control" id="localidad" name="localidad" th:field="*{localidad}" required placeholder="Localidad">
                <input type="text" class="form-control" id="provincia" name="provincia" th:field="*{provincia}" required placeholder="Provincia">
-               <h6 class="text-danger" th:if="${error!=null}" th:text="${'Usuario o email existente'}"></h6>
                <button>REGISTRAR</button>
                <p class="message">¿Estás registrado? <a href="/">Iniciar Sesión</a></p>
             </form>

@@ -40,7 +40,10 @@ public class UsuariosController {
 	}
 
 	@GetMapping("/usuarios/addUsuario")
-	public String addUsuarioGet(@RequestParam(required = false, name = "error") String error, Model model,
+	public String addUsuarioGet(@RequestParam(required = false, name = "errorUsername") String errorUsername,
+			@RequestParam(required = false, name = "errorEmail") String errorEmail,
+			@RequestParam(required = false, name = "errorDNI") String errorDNI,
+			@RequestParam(required = false, name = "errorPassword") String errorPassword, Model model,
 			Principal principal) {
 
 		// Para mostrar nombre y apellidos del usuario que ha iniciado sesion
@@ -50,7 +53,10 @@ public class UsuariosController {
 
 		UsuarioDTO usuarioDTO = new UsuarioDTO();
 		model.addAttribute("usuarioDTO", usuarioDTO);
-		model.addAttribute("error", error);
+		model.addAttribute("errorUsername", errorUsername);
+		model.addAttribute("errorEmail", errorEmail);
+		model.addAttribute("errorDNI", errorDNI);
+		model.addAttribute("errorPassword", errorPassword);
 
 		return "usuario/addUsuario";
 	}
@@ -72,16 +78,39 @@ public class UsuariosController {
 		usuario.setSexo(usuarioDTO.getSexo());
 		usuario.setRole(usuarioDTO.getRole());
 		usuario.setFecha_nacimiento(usuarioDTO.getFecha_nacimiento());
-//		usuario.setFecha_registro(usuarioDTO.getFecha_registro());
 
-//		String fechaActual = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
-//		usuario.setFecha_registro(fechaActual);
+		String fechaActual = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+		usuario.setFecha_registro(fechaActual);
 
-		if (usuarioService.insertUsuario(usuario) == null) {
-			return "redirect:/usuarios/addUsuario?error=Existe&Usuario=" + usuarioDTO.getUsername();
+//		if (usuarioService.insertUsuario(usuario) == null) {
+//			return "redirect:/usuarios/addUsuario?error=Existe&Usuario=" + usuarioDTO.getUsername();
+//		}
+
+		if (usuarioDTO.getPassword().length() < 5) {
+			atribute.addFlashAttribute("success", "La contraseña tiene que tener mínimo 5 caracteres.");
+			return "redirect:/usuarios/addUsuario?errorPassword=min5&caracters";
+		} else {
+			usuario = usuarioService.insertUsuario(usuario);
+		}
+
+		while (usuario == null) {
+			if (usuarioService.getUsuarioByUserName(usuarioDTO.getUsername()) != null) {
+				atribute.addFlashAttribute("success", "Usuario no disponible");
+				return "redirect:/usuarios/addUsuario?errorUsername=Existe&usuario=" + usuarioDTO.getUsername();
+			}
+			if (usuarioService.getUsuarioByEmail(usuarioDTO.getEmail()) != null) {
+				atribute.addFlashAttribute("success", "Este email ya esta registrado.");
+				return "redirect:/usuarios/addUsuario?errorEmail=Email&registrado";
+			}
+			if (usuarioService.getUsuarioByNif(usuarioDTO.getNif()) != null) {
+				atribute.addFlashAttribute("success", "Ya existe una cuenta con este DNI.");
+				return "redirect:/usuarios/addUsuario?errorDNI=dni&registrado=" + usuarioDTO.getNif();
+			}
 		}
 
 		atribute.addFlashAttribute("success", "Usuario ''" + usuarioDTO.getUsername() + "'' guardado con éxito.");
+		
+
 		return "redirect:/usuarios";
 	}
 

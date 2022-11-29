@@ -11,7 +11,7 @@ public class ReservaDTO {
 	private Pista id_pista;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fecha;
-	@DateTimeFormat(pattern = "hh:mm tt")
+//	@DateTimeFormat(pattern = "hh:mm tt")
 	private String hora_inicio;
 
 	public ReservaDTO() {
@@ -49,13 +49,5 @@ public class ReservaDTO {
 	public void setHora_inicio(String hora_inicio) {
 		this.hora_inicio = hora_inicio;
 	}
-
-//	public String getHora_fin() {
-//		return hora_fin;
-//	}
-//
-//	public void setHora_fin(String hora_fin) {
-//		this.hora_fin = hora_fin;
-//	}
 
 }

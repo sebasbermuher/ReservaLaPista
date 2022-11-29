@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "reserva", uniqueConstraints = @UniqueConstraint(columnNames = { "fecha", "hora_inicio" }))
+//@IdClass(Reserva_id.class)
 public class Reserva implements Serializable {
 
 	/**
@@ -31,12 +33,14 @@ public class Reserva implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
-	@JoinColumn(name = "id_usuario", insertable = false, updatable = false)
+//	@Id
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
 
-	@ManyToOne
-	@JoinColumn(name = "id_pista", insertable = false, updatable = false)
+//	@Id
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_pista")
 	private Pista pista;
 
 	@Temporal(TemporalType.DATE)
@@ -49,9 +53,8 @@ public class Reserva implements Serializable {
 	public Reserva() {
 	}
 
-	public Reserva(Long id, Usuario usuario, Pista pista, Date fecha, String hora_inicio) {
+	public Reserva(Usuario usuario, Pista pista, Date fecha, String hora_inicio) {
 		super();
-		this.id = id;
 		this.usuario = usuario;
 		this.pista = pista;
 		this.fecha = fecha;

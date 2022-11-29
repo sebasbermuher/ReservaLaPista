@@ -1,7 +1,6 @@
 package org.iesalixar.servidor.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -237,7 +236,8 @@ public class Usuario implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, nif);
+		return Objects.hash(apellido1, apellido2, email, fecha_nacimiento, fecha_registro, id, localidad, nif, nombre,
+				password, provincia, reserva, role, sexo, telefono, username);
 	}
 
 	@Override
@@ -249,7 +249,14 @@ public class Usuario implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(id, other.id) && Objects.equals(nif, other.nif);
+		return Objects.equals(apellido1, other.apellido1) && Objects.equals(apellido2, other.apellido2)
+				&& Objects.equals(email, other.email) && Objects.equals(fecha_nacimiento, other.fecha_nacimiento)
+				&& Objects.equals(fecha_registro, other.fecha_registro) && Objects.equals(id, other.id)
+				&& Objects.equals(localidad, other.localidad) && Objects.equals(nif, other.nif)
+				&& Objects.equals(nombre, other.nombre) && Objects.equals(password, other.password)
+				&& Objects.equals(provincia, other.provincia) && Objects.equals(reserva, other.reserva)
+				&& Objects.equals(role, other.role) && Objects.equals(sexo, other.sexo)
+				&& Objects.equals(telefono, other.telefono) && Objects.equals(username, other.username);
 	}
 
 	// HELPERS ELIMINAR RESERVA

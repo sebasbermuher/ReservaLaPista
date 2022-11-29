@@ -31,13 +31,15 @@ public class LoginController {
 	@GetMapping("/register")
 	public String registerGet(@RequestParam(required = false, name = "errorUsername") String errorUsername,
 			@RequestParam(required = false, name = "errorEmail") String errorEmail,
-			@RequestParam(required = false, name = "errorDNI") String errorDNI, Model model) {
+			@RequestParam(required = false, name = "errorDNI") String errorDNI,
+			@RequestParam(required = false, name = "errorPassword") String errorPassword, Model model) {
 
 		UsuarioDTO userDTO = new UsuarioDTO();
 		model.addAttribute("userDTO", userDTO);
 		model.addAttribute("errorUsername", errorUsername);
 		model.addAttribute("errorEmail", errorEmail);
 		model.addAttribute("errorDNI", errorDNI);
+		model.addAttribute("errorPassword", errorPassword);
 
 		return "login/register";
 	}
@@ -63,7 +65,11 @@ public class LoginController {
 		String fechaActual = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
 		userBD.setFecha_registro(fechaActual);
 
-		userBD = usuarioService.insertUsuario(userBD);
+		if (usuario.getPassword().length() < 5) {
+			return "redirect:/register?errorPassword=min5&caracters";
+		} else {
+			userBD = usuarioService.insertUsuario(userBD);
+		}
 
 		if (userBD == null) {
 			if (usuarioService.getUsuarioByUserName(usuario.getUsername()) != null) {

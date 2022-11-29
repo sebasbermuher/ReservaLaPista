@@ -1,7 +1,6 @@
 package org.iesalixar.servidor.services;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.iesalixar.servidor.model.Pista;
@@ -71,11 +70,11 @@ public class ReservaServiceImpl implements ReservaService {
 	}
 
 	@Override
-	public List<Reserva> findReservasByIdAndFecha(Long id, Date fecha) {
-		if (id != null || fecha != null) {
-			return reservaRepo.findReservasByIdAndFecha(id, fecha);
-		}
-		return null;
+	public List<Reserva> findReservaByUsuario(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return reservaRepo.findReservasByUsuario(usuario);
 	}
+
+
 
 }

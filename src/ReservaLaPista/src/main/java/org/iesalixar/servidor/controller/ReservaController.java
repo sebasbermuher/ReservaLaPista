@@ -1,7 +1,6 @@
 package org.iesalixar.servidor.controller;
 
 import java.security.Principal;
-import java.util.Date;
 import java.util.List;
 
 import org.iesalixar.servidor.dto.ReservaDTO;
@@ -53,9 +52,9 @@ public class ReservaController {
 		return "reserva/reservar";
 	}
 
-	public List<Reserva> findReservas(Long idReserva, Date fechaReserva) {
-		return reservaService.findReservasByIdAndFecha(idReserva, fechaReserva);
-	}
+//	public List<Reserva> findReservas(Long idReserva, Date fechaReserva) {
+//		return reservaService.findReservasByIdAndFecha(idReserva, fechaReserva);
+//	}
 
 	@PostMapping("/reservar")
 	public String reservarPost(@ModelAttribute ReservaDTO reservaDTO, Model model, RedirectAttributes atribute) {
@@ -65,7 +64,9 @@ public class ReservaController {
 		reserva.setPista(reservaDTO.getId_pista());
 		reserva.setFecha(reservaDTO.getFecha());
 		reserva.setHora_inicio(reservaDTO.getHora_inicio());
-//		reserva.setHora_fin(reservaDTO.getHora_fin());
+
+		System.out.println("Pista" + reservaDTO.getId_pista().getNombre());
+		System.out.println("Usuario" + reservaDTO.getId_usuario().getNombre());
 
 		if (reservaService.insertReserva(reserva) == null) {
 			return "redirect:/reservar?error=Existe&Reserva=" + reservaDTO.getId_usuario() + reservaDTO.getId_pista();
@@ -88,6 +89,25 @@ public class ReservaController {
 
 		return "reserva/totalReservas";
 	}
+
+//	MIS RESERVAS ----------------------------
+
+	@RequestMapping("/misreservas")
+	public String misReservas(Model model, Principal principal) {
+
+		// Para mostrar nombre y apellidos del usuario que ha iniciado sesion
+		Usuario user = usuarioService.getUsuarioByUserName(principal.getName());
+		model.addAttribute("user", user);
+		// -------------------------------------
+
+		List<Reserva> reserva = reservaService.findReservaByUsuario(user);
+
+		model.addAttribute("reserva", reserva);
+
+		return "reserva/misReservas";
+	}
+
+//	----------------------------------------------------------------------------------
 
 	@GetMapping("/reservas/addReserva")
 	public String addReservaGet(@RequestParam(required = false, name = "error") String error, Model model,

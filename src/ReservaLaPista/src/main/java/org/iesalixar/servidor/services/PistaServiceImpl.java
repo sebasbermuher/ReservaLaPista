@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.iesalixar.servidor.model.Pista;
-import org.iesalixar.servidor.model.Usuario;
 import org.iesalixar.servidor.repository.PistaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

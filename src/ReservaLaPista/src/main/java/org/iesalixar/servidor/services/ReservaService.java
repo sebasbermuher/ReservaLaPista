@@ -1,6 +1,5 @@
 package org.iesalixar.servidor.services;
 
-import java.util.Date;
 import java.util.List;
 
 import org.iesalixar.servidor.model.Pista;
@@ -24,6 +23,8 @@ public interface ReservaService {
 
 	public Reserva eliminarReserva(Reserva reserva);
 
-	public List<Reserva> findReservasByIdAndFecha(Long id, Date fecha);
+//	public List<Reserva> findReservasByIdAndFecha(Long id, Date fecha);
+	
+	public List<Reserva> findReservaByUsuario(Usuario usuario);
 
 }
