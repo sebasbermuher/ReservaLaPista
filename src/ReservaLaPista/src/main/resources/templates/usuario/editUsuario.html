@@ -4,7 +4,7 @@
 <body>
 <header th:insert="fragments/parts::barra"></header>
 	<div class="container mt-5">
-	<h1 class="text-center mt-3">Editar usuario @<span th:text="${usuario.getUsername()}"/></h1>
+	<h1 class="text-center mt-3">Editar usuario: @<span th:text="${usuario.getUsername()}"/></h1>
 		<div class="col-6 mx-auto">
 			<form th:action="@{/usuarios/edit}" method="post"	th:object="${usuario}">
 				
@@ -28,8 +28,8 @@
 				<input type="text" class="form-control" id="username" name="username"
 					th:field="*{username}" required>
 								
-				<label for="password" class="form-label mt-3">Password</label>
-				<input type="text" class="form-control" id="password" name="password"
+				<label hidden for="password" class="form-label mt-3">Password</label>
+				<input hidden type="text" class="form-control" id="password" name="password"
 					th:field="*{password}" required>
 					<!-- readonly -->
 					
@@ -69,11 +69,11 @@
 				<input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"
 					th:field="*{fecha_nacimiento}" required>
 					
-				<label for="fecha_registro" class="form-label mt-3">Fecha de registro</label>
-				<input type="date" class="form-control" id="fecha_registro" name="fecha_registro"
+				<label for="fecha_registro" class="form-label mt-3">Fecha de registro: </label>
+				<span th:text="${usuario.getFecha_registro()}"/>
+				<input hidden type="text" class="form-control" id="fecha_registro" name="fecha_registro"
 					th:field="*{fecha_registro}" >
-				
-				
+
 				<input type="submit" class="btn btn-primary w-100 mt-3" value="EDITAR" />
 			</form>
 	</div>

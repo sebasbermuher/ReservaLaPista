@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8" />
 	<div th:replace="fragments/bootstrap::head2(title='Usuarios')" />
@@ -63,10 +64,15 @@
 						<td name="fechaNac" th:text="${u.getFecha_nacimiento()}"></td>
 						<td th:text="${u.getFecha_registro()}"></td>
 
-						<td><a type="button" class="btn btn-success" th:href="@{'/usuarios/edit?user='+${u.getId()}}"><i
+						<td><a title="Editar" type="button" class="btn btn-success" th:href="@{'/usuarios/edit?user='+${u.getId()}}"><i
 									class="fas fa-edit"></i></a></td>
-						<td><a type="button" class="btn btn-danger"
+						<!--<td><a type="button" class="btn btn-danger"
 								th:href="@{'/usuarios/delete?user='+${u.getId()}}"><i class="far fa-trash-alt"></i></a>
+						</td> -->
+						
+						<td><a title="Eliminar" type="button" class="btn btn-danger" href="#"
+								th:onclick="'javascript:confirmDelete(\''+ ${u.id} +'\');'"><i
+									class="fas fa-user-times"></i></a>
 						</td>
 					</tr>
 				</tbody>
@@ -75,7 +81,23 @@
 	</div>
 	<br>
 	<br>
+	<div th:include="confirm-delete-dialog.html" th:remove="tag"></div>
 	<footer th:insert="fragments/parts::pie"></footer>
+	<script type="text/javascript">
+		function confirmDelete(id) {
+			$('#deleteModal').modal('show');
+			$("#userIdHiddenInput").val(id);
+		}
+
+		function deleteUser() {
+			var id = $("#userIdHiddenInput").val();
+			window.location = "/usuarios/delete?user=" + id;
+		}
+
+		function cerrar() {
+			$('#deleteModal').modal('hide');
+		}
+	</script>
 </body>
 
 </html>

@@ -46,26 +46,68 @@ let horaActual = dia.toLocaleString().split(',')[1].substring(1, 3);
 let grupo = document.getElementsByName("hora_inicio");
 let labelBoton = document.getElementsByName("labelBoton");
 
+function getFechaInput() {
+	var fechaElement = document.getElementsByName("fecha");
+	let dia = new Date()
+	let diaActual = dia.toISOString().substring(0, 10)
+	console.log(diaActual)
 
-//CAMBIAR COLOR A LOS LABEL QUE YA HA PASADO LA HORA
-for (var i = 0; i < labelBoton.length; i++) {
-	const acortado = labelBoton[i].innerHTML.substring(0, 2)
-	//console.log(acortado)
-	if (acortado <= horaActual) {
-		labelBoton[i].style.backgroundColor = "#FD6161";
-		labelBoton[i].style.color = "white";
+	for (var i = 0; i < fechaElement.length; i++) {
+		const fecha = fechaElement[i].value
+		console.log(fecha)
+		if (diaActual === fecha) {
+			//CAMBIAR COLOR A LOS LABEL QUE YA HA PASADO LA HORA
+			for (var i = 0; i < labelBoton.length; i++) {
+				const acortado = labelBoton[i].innerHTML.substring(0, 2)
+				//console.log(acortado)
+				if (acortado <= horaActual) {
+					labelBoton[i].style.backgroundColor = "#FD6161";
+					labelBoton[i].style.color = "white";
+				}
+			}
+			//CAMBIAR DISABLED A LOS INPUT QUE YA HA PASADO LA HORA
+			grupo.forEach((element) => {
+				const values = element.defaultValue.substring(0, 2)
+
+				if (values <= horaActual) {
+					//console.log(values)
+					element.disabled = true;
+				}
+			})
+
+		} else if ((diaActual != fecha)) {
+			for (var i = 0; i < labelBoton.length; i++) {
+				const acortado = labelBoton[i].innerHTML.substring(0, 2)
+				//console.log(acortado)
+				if (acortado <= horaActual) {
+					labelBoton[i].style.backgroundColor = "";
+					labelBoton[i].style.color = "";
+				}
+			}
+		}
+		//	QUITAR DISABLE A LOS INPUTS
+		grupo.forEach((element) => {
+			const values = element.defaultValue.substring(0, 2)
+
+			if (values <= horaActual) {
+				//console.log(values)
+				element.disabled = false;
+			}
+		})
 	}
+
 }
 
-//CAMBIAR DISABLED A LOS INPUT QUE YA HA PASADO LA HORA
-grupo.forEach((element) => {
-	const values = element.defaultValue.substring(0, 2)
 
-	if (values <= horaActual) {
-		//console.log(values)
-		element.disabled = true;
-	}
-})
+
+
+
+
+
+
+
+
+
 
 
 

@@ -9,10 +9,10 @@
 		<h1 class="text-center mt-3">Añadir usuario</h1>
 
 		<div class="col-6 mx-auto">
-		<div class="alert alert-danger alert-dismissable" th:if="${success != null}">
-			<label th:text="${success}"></label>
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		</div>
+			<div class="alert alert-danger alert-dismissable" th:if="${success != null}">
+				<label th:text="${success}"></label>
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
 			<form th:action="@{/usuarios/addUsuario}" method="post" th:object="${usuarioDTO}">
 				<label for="nombre" class="form-label mt-3">Nombre</label>
 				<input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" required>
@@ -73,9 +73,7 @@
 				<input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"
 					th:field="*{fecha_nacimiento}" required>
 
-				<label for="fecha_registro" class="form-label mt-3">Fecha de registro</label>
-				<input type="date" class="form-control" id="fecha_registro" name="fecha_registro"
-					th:field="*{fecha_registro}">
+
 
 
 				<input type="submit" class="btn btn-primary w-100 mt-3" value="AÑADIR" />

@@ -8,12 +8,11 @@
 	<link rel="stylesheet" type="text/css" href="static/css/dataTable.css" th:href="@{/css/dataTable.css}" />
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="/js/dataTable.js" th:href="@{/js/dataTable.js}" defer></script>
-
-
 </head>
 
 <body>
 	<header th:insert="fragments/parts::barra2"></header>
+
 	<div class="mx-auto col-11">
 		<div class="title">
 			<h1>Pistas<span>Reserva La Pista</span></h1>
@@ -58,12 +57,17 @@
 						<td th:text="${p.getApertura()}"></td>
 						<td th:text="${p.getCierre()}"></td>
 
-						<td><a type="button" class="btn btn-success" th:href="@{'/pistas/edit?pist='+${p.getId()}}"><i
-									class="fas fa-edit"></i></a></td>
-						<td><a type="button" class="btn btn-danger" th:href="@{'/pistas/delete?pist='+${p.getId()}}"><i
+						<td><a title="Editar" type="button" class="btn btn-success"
+								th:href="@{'/pistas/edit?pist='+${p.getId()}}"><i class="fas fa-edit"></i></a></td>
+						<!--<td><a type="button" class="btn btn-danger" th:href="@{'/pistas/delete?pist='+${p.getId()}}"><i
 									class="far fa-trash-alt"></i></a>
+						</td> -->
+
+						<td><a title="Eliminar" type="button" class="btn btn-danger" href="#"
+								th:onclick="'javascript:confirmDelete(\''+ ${p.id} +'\');'"><i
+									class="fas fa-user-times"></i></a>
 						</td>
-						<!-- <a href="#" onclick="return confirm('Estás seguro que deseas eliminar el registro?');">Eliminar registro</a> -->
+
 					</tr>
 				</tbody>
 			</table>
@@ -71,7 +75,27 @@
 	</div>
 	<br>
 	<br>
+
+
+
+	<div th:include="confirm-delete-dialog.html" th:remove="tag"></div>
 	<footer th:insert="fragments/parts::pie"></footer>
+
+	<script type="text/javascript">
+		function confirmDelete(id) {
+			$('#deleteModal').modal('show');
+			$("#userIdHiddenInput").val(id);
+		}
+
+		function deleteUser() {
+			var id = $("#userIdHiddenInput").val();
+			window.location = "/pistas/delete?pist=" + id;
+		}
+
+		function cerrar() {
+			$('#deleteModal').modal('hide');
+		}
+	</script>
 </body>
 
 </html>

@@ -1,6 +1,8 @@
 package org.iesalixar.servidor.controller;
 
 import java.security.Principal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.iesalixar.servidor.dto.ReservaDTO;
@@ -11,6 +13,8 @@ import org.iesalixar.servidor.services.PistaServiceImpl;
 import org.iesalixar.servidor.services.ReservaServiceImpl;
 import org.iesalixar.servidor.services.UsuarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +35,9 @@ public class ReservaController {
 
 	@Autowired
 	PistaServiceImpl pistaService;
+
+	@Autowired
+	private JavaMailSender mailSender;
 
 	@GetMapping("/reservar")
 	public String reservarGet(@RequestParam(required = false, name = "error") String error, Model model,
@@ -65,14 +72,28 @@ public class ReservaController {
 		reserva.setFecha(reservaDTO.getFecha());
 		reserva.setHora_inicio(reservaDTO.getHora_inicio());
 
-		System.out.println("Pista" + reservaDTO.getId_pista().getNombre());
-		System.out.println("Usuario" + reservaDTO.getId_usuario().getNombre());
+		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		String fechaFormat = formatter.format(reservaDTO.getFecha());
+
+		SimpleMailMessage email = new SimpleMailMessage();
 
 		if (reservaService.insertReserva(reserva) == null) {
 			return "redirect:/reservar?error=Existe&Reserva=" + reservaDTO.getId_usuario() + reservaDTO.getId_pista();
+		} else {
+			email.setTo(reservaDTO.getId_usuario().getEmail());
+			email.setSubject("Reserva confirmada.");
+			email.setText("Estimado/a " + reservaDTO.getId_usuario().getNombre() + " "
+					+ reservaDTO.getId_usuario().getApellido1() + " " + reservaDTO.getId_usuario().getApellido2()
+					+ ", \nle confirmamos su reserva de la pista ''" + reservaDTO.getId_pista().getNombre() + " ("
+					+ reservaDTO.getId_pista().getDeporte() + ")'' " + " para el día " + fechaFormat
+					+ " con el siguiente tramo horario: " + reservaDTO.getHora_inicio()
+					+ ". \nGracias por usar nuestros servicios. \nReservaLaPista");
+
+			mailSender.send(email);
+			atribute.addFlashAttribute("success", "Reserva realizada con éxito.");
+			return "redirect:/misreservas";
 		}
-		atribute.addFlashAttribute("success", "Reserva realizada con éxito.");
-		return "redirect:/reservas";
+
 	}
 
 	@RequestMapping("/reservas")
@@ -138,14 +159,31 @@ public class ReservaController {
 		reserva.setPista(reservaDTO.getId_pista());
 		reserva.setFecha(reservaDTO.getFecha());
 		reserva.setHora_inicio(reservaDTO.getHora_inicio());
-//		reserva.setHora_fin(reservaDTO.getHora_fin());
+
+		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		String fechaFormat = formatter.format(reservaDTO.getFecha());
+
+		SimpleMailMessage email = new SimpleMailMessage();
 
 		if (reservaService.insertReserva(reserva) == null) {
 			return "redirect:/reservas/addReserva?error=Existe&Reserva=" + reservaDTO.getId_usuario()
 					+ reservaDTO.getId_pista();
+		} else {
+			email.setTo(reservaDTO.getId_usuario().getEmail());
+			email.setSubject("Reserva confirmada.");
+			email.setText("Estimado/a " + reservaDTO.getId_usuario().getNombre() + " "
+					+ reservaDTO.getId_usuario().getApellido1() + " " + reservaDTO.getId_usuario().getApellido2()
+					+ ", \nle confirmamos su reserva de la pista ''" + reservaDTO.getId_pista().getNombre() + " ("
+					+ reservaDTO.getId_pista().getDeporte() + ")'' " + " para el día " + fechaFormat
+					+ " con el siguiente tramo horario: " + reservaDTO.getHora_inicio()
+					+ ". \nGracias por usar nuestros servicios. \nReservaLaPista");
+
+			mailSender.send(email);
+			atribute.addFlashAttribute("success",
+					"Reserva para el usuario  ''" + reservaDTO.getId_usuario().getNombre() + "'' realizada con éxito.");
+			return "redirect:/reservas";
 		}
-		atribute.addFlashAttribute("success", "Reserva realizada con éxito. Usuario: " + reservaDTO.getId_usuario());
-		return "redirect:/reservas";
+
 	}
 
 //	@GetMapping("/reservas/delete")

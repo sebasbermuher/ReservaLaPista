@@ -1,6 +1,7 @@
 package org.iesalixar.servidor.controller;
 
 import java.security.Principal;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -8,6 +9,8 @@ import org.iesalixar.servidor.dto.UsuarioDTO;
 import org.iesalixar.servidor.model.Usuario;
 import org.iesalixar.servidor.services.UsuarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +25,9 @@ public class LoginController {
 
 	@Autowired
 	UsuarioServiceImpl usuarioService;
+
+	@Autowired
+	private JavaMailSender mailSender;
 
 	@RequestMapping({ "/", "/login" })
 	public String login(Model model) {
@@ -65,10 +71,20 @@ public class LoginController {
 		String fechaActual = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
 		userBD.setFecha_registro(fechaActual);
 
+		SimpleMailMessage email = new SimpleMailMessage();
+
 		if (usuario.getPassword().length() < 5) {
 			return "redirect:/register?errorPassword=min5&caracters";
 		} else {
 			userBD = usuarioService.insertUsuario(userBD);
+
+			email.setTo(usuario.getEmail());
+			email.setSubject("Registro en ReservaLaPista confirmado.");
+			email.setText("Estimado/a " + usuario.getNombre() + " " + usuario.getApellido1() + " "
+					+ usuario.getApellido2()
+					+ ", \nle damos la bienvenida a nuestra aplicación web ''ReservaLaPista''. \nDesde ya puedes reservar nuestras pistas deportivas. \nMuchas gracias por su confianza. \nLe mandamos un cordial saludo. \nReservaLaPista.");
+
+			mailSender.send(email);
 		}
 
 		if (userBD == null) {
