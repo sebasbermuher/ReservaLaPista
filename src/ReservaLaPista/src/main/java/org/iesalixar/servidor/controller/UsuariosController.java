@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.iesalixar.servidor.dto.UsuarioDTO;
@@ -198,7 +199,7 @@ public class UsuariosController {
 
 		return "usuario/infoUsuario";
 	}
-	
+
 	@GetMapping("/usuarios/delete")
 	public String eliminarUsuario(@RequestParam(required = true, name = "user") String user, Model model,
 			RedirectAttributes atribute) {
@@ -212,6 +213,26 @@ public class UsuariosController {
 		} else {
 			return "redirect:/usuarios/";
 		}
+	}
+
+	@GetMapping("/usuarios/reservas")
+	public String reservaDeUsuario(@RequestParam(required = false, name = "codigo") String codigo,
+			@RequestParam(required = false, name = "error") String error, Model model, Principal principal) {
+
+		// Para mostrar nombre y apellidos del usuario que ha iniciado sesion
+		Usuario user2 = usuarioService.getUsuarioByUserName(principal.getName());
+		model.addAttribute("user", user2);
+		// -------------------------------------
+		if (codigo == null) {
+			return "redirect:/usuarios/";
+		}
+		Optional<Usuario> usuario = usuarioService.findUsuarioById(Long.parseLong(codigo));
+		model.addAttribute("usuario", usuario.get());
+		if (usuario.get().getReserva().size() == 0 || usuario == null) {
+			error = "error";
+			model.addAttribute("error", error);
+		}
+		return "usuario/usuarioReservas";
 	}
 
 }

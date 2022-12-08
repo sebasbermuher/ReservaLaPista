@@ -2,40 +2,48 @@
 <html>
 
 <head>
-	<meta charset="utf-8" />
-	<div th:replace="fragments/bootstrap::head2(title='Usuarios')" />
-	<link rel="stylesheet" type="text/css" href="static/css/usuarios.css" th:href="@{/css/usuarios.css}" />
-	<script src="/js/dataTable.js" th:href="@{/js/dataTable.js}" defer></script>
-	<script src="/js/usuarios.js" th:href="@{/js/usuarios.js}" defer></script>
+<meta charset="utf-8" />
+<div th:replace="fragments/bootstrap::head2(title='Usuarios')" />
+<link rel="stylesheet" type="text/css" href="static/css/usuarios.css"
+	th:href="@{/css/usuarios.css}" />
+<script src="/js/dataTable.js" th:href="@{/js/dataTable.js}" defer></script>
+<script src="/js/usuarios.js" th:href="@{/js/usuarios.js}" defer></script>
 </head>
 
 <body>
 	<header th:insert="fragments/parts::barra2"></header>
 	<div class="mx-auto col-12 col-md-12 col-sm-1">
 		<div class="title">
-			<h1>Usuarios<span>Reserva La Pista</span></h1>
+			<h1>
+				Usuarios<span>Reserva La Pista</span>
+			</h1>
 		</div>
 
 		<!-- MENSAJES ALERT-->
-		<div class="alert alert-success alert-dismissable" th:if="${success != null}">
+		<div class="alert alert-success alert-dismissable"
+			th:if="${success != null}">
 			<label th:text="${success}"></label>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 		</div>
-		<div class="alert alert-warning alert-dismissable" th:if="${warning != null}">
+		<div class="alert alert-warning alert-dismissable"
+			th:if="${warning != null}">
 			<label th:text="${warning}"></label>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 		</div>
-		<div class="alert alert-info alert-dismissable" th:if="${edit != null}">
+		<div class="alert alert-info alert-dismissable"
+			th:if="${edit != null}">
 			<label th:text="${edit}"></label>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 		</div>
 
-		<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{../usuarios/addUsuario}"
-			class="btn btn-primary btn-lg active" role="button">Añadir Usuario</a>
-		<br>
-		<br>
+		<a sec:authorize="hasRole('ROLE_ADMIN')"
+			th:href="@{../usuarios/addUsuario}"
+			class="btn btn-primary btn-lg active" role="button">Añadir
+			Usuario</a> <br> <br>
 		<div class="table-responsive" id="mydatatable-container">
-			<table class="records_list table table-striped table-bordered table-hover text-center" id="mydatatable">
+			<table
+				class="records_list table table-striped table-bordered table-hover text-center"
+				id="mydatatable">
 				<thead class="table-light">
 					<tr>
 						<th>ID</th>
@@ -47,6 +55,7 @@
 						<th>Role</th>
 						<th>Fecha Nacimiento</th>
 						<th>Fecha Registro</th>
+						<th></th>
 						<th></th>
 						<th></th>
 						<th></th>
@@ -65,17 +74,20 @@
 						<td th:text="${u.getFecha_registro()}"></td>
 
 						<td><a title="Ver Info" type="button" class="btn btn-success"
-								th:href="@{'/usuarios/info?user='+${u.getId()}}"><i class="bi bi-info-circle"></i></a>
-						</td>
+							th:href="@{'/usuarios/info?user='+${u.getId()}}"><i
+								class="bi bi-info-circle"></i></a></td>
+						<td><a
+							th:href="@{'/usuarios/reservas?codigo='+${u.getId()}}"><i
+								class="bi bi-journal-bookmark-fill"></i></a></td>
 
 						<td><a title="Editar" type="button" class="btn btn-success"
-								th:href="@{'/usuarios/edit?user='+${u.getId()}}"><i class="bi bi-pencil-square"></i></a>
-						</td>
+							th:href="@{'/usuarios/edit?user='+${u.getId()}}"><i
+								class="bi bi-pencil-square"></i></a></td>
 
-						<td><a title="Eliminar" type="button" class="btn btn-danger" href="#"
-								th:onclick="'javascript:confirmDelete(\''+ ${u.id} +'\');'"><i
-									class="bi bi-person-x-fill"></i></a>
-						</td>
+						<td><a title="Eliminar" type="button" class="btn btn-danger"
+							href="#"
+							th:onclick="'javascript:confirmDelete(\''+ ${u.id} +'\');'"><i
+								class="bi bi-person-x-fill"></i></a></td>
 					</tr>
 				</tbody>
 			</table>

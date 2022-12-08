@@ -2,6 +2,7 @@ package org.iesalixar.servidor.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.iesalixar.servidor.model.Usuario;
 import org.iesalixar.servidor.repository.UsuarioRepository;
@@ -83,6 +84,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 			return user;
 		}
 		return null;
+	}
+
+	@Override
+	public Optional<Usuario> findUsuarioById(Long id) {
+		return userRepo.findById(id);
 	}
 
 	

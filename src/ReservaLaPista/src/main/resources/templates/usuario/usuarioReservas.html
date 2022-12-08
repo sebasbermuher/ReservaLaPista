@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<div th:replace="fragments/bootstrap::head2(title='Reservas de usuario')" />
+<link rel="stylesheet" type="text/css" href="static/css/misReservas.css"
+	th:href="@{/css/misReservas.css}" />
+<link rel="stylesheet" type="text/css" href="static/css/dataTable.css"
+	th:href="@{/css/dataTable.css}" />
+<script src="/js/dataTableRolUser.js"
+	th:href="@{/js/dataTableRolUser.js}" defer></script>
+<script src="/js/misreservas.js" th:href="@{/js/misreservas.js}" defer></script>
+</head>
+
+<body>
+	<header th:insert="fragments/parts::barra2"></header>
+	<div class="mx-auto col-11">
+		<div class="title">
+			<h1>
+				Reservas<span th:text="'@'+${usuario.getUsername()}"></span>
+			</h1>
+
+			<div class="table-responsive" id="mydatatable-container">
+				<table
+					class="records_list table table-striped table-bordered table-hover text-center"
+					id="mydatatable">
+					<thead class="table-light">
+						<tr>
+							<th>Id</th>
+							<th>Pista</th>
+							<th>Fecha</th>
+							<th>Tramo horario</th>
+							<th>Estado</th>
+							<th></th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="u : ${usuario.reserva}">
+							<td th:text="${u.id}"></td>
+							<td th:text="${u.pista.getDeporte()} + ' - ' + ${u.pista.getNombre()}"></td>
+							<td name="fecha" th:text="${u.fecha}"></td>
+							<td name="horas" th:text="${u.hora_inicio}"></td>
+							<td name="estado"></td>
+							<td>boton eliminar</th>
+						</td>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div th:include="confirm-delete-dialog.html" th:remove="tag"></div>
+	<footer th:insert="fragments/parts::pie"></footer>
+	<script type="text/javascript">
+		function confirmDelete(id) {
+			$('#deleteModal').modal('show');
+			$("#userIdHiddenInput").val(id);
+		}
+
+		function deleteUser() {
+			var id = $("#userIdHiddenInput").val();
+			window.location = "/misreservas/delete?rese=" + id;
+		}
+
+		function cerrar() {
+			$('#deleteModal').modal('hide');
+		}
+	</script>
+</body>
+
+</html>
