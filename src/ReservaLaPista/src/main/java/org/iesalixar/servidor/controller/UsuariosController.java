@@ -182,6 +182,23 @@ public class UsuariosController {
 		return "redirect:/usuarios";
 	}
 
+	@GetMapping("/usuarios/info")
+	public String infoUsuarioGet(@RequestParam(name = "user") String user,
+			@RequestParam(required = false, name = "errorEmail") String errorEmail, Model model, Principal principal) {
+
+		// Para mostrar nombre y apellidos del usuario que ha iniciado sesion
+		Usuario user2 = usuarioService.getUsuarioByUserName(principal.getName());
+		model.addAttribute("user", user2);
+		// -------------------------------------
+
+		Usuario usuario = usuarioService.findUsuarioByIdModel(Long.parseLong(user));
+		model.addAttribute("usuario", usuario);
+
+		model.addAttribute("errorEmail", errorEmail);
+
+		return "usuario/infoUsuario";
+	}
+	
 	@GetMapping("/usuarios/delete")
 	public String eliminarUsuario(@RequestParam(required = true, name = "user") String user, Model model,
 			RedirectAttributes atribute) {

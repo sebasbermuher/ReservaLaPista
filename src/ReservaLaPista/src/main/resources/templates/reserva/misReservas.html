@@ -40,6 +40,7 @@
 						<th>Fecha</th>
 						<th>Tramo horario</th>
 						<th>Estado</th>
+						<th></th>
 
 					</tr>
 				</thead>
@@ -50,6 +51,9 @@
 						<td name="fecha" th:text="${r.getFecha()}"></td>
 						<td name="horas" th:text="${r.getHora_inicio()}"></td>
 						<td name="estado"></td>
+						<td><a name="eliminar" title="Eliminar" type="button" class="btn btn-danger" href="#"
+								th:onclick="'javascript:confirmDelete(\''+ ${r.id} +'\');'"><i
+									class="bi bi-calendar-x"></i></a>
 
 					</tr>
 				</tbody>
@@ -58,7 +62,23 @@
 	</div>
 	<br>
 	<br>
+	<div th:include="confirm-delete-dialog.html" th:remove="tag"></div>
 	<footer th:insert="fragments/parts::pie"></footer>
+	<script type="text/javascript">
+		function confirmDelete(id) {
+			$('#deleteModal').modal('show');
+			$("#userIdHiddenInput").val(id);
+		}
+
+		function deleteUser() {
+			var id = $("#userIdHiddenInput").val();
+			window.location = "/misreservas/delete?rese=" + id;
+		}
+
+		function cerrar() {
+			$('#deleteModal').modal('hide');
+		}
+	</script>
 </body>
 
 </html>

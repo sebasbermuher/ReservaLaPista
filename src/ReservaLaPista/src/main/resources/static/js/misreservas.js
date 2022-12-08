@@ -4,6 +4,7 @@ let horaActual = dia.toLocaleString().split(',')[1].substring(1, 6)
 let fechaDOM = document.getElementsByName("fecha")
 let horas = document.getElementsByName("horas")
 let estado = document.getElementsByName("estado")
+let eliminar = document.getElementsByName("eliminar")
 
 for (var i = 0; i < fechaDOM.length; i++) {
 	const fecha = fechaDOM[i].innerHTML
@@ -22,6 +23,7 @@ for (var i = 0; i < fechaDOM.length; i++) {
 		estado[i].innerHTML = "JUGADO"
 		estado[i].style.backgroundColor = "#FB6C63"
 		estado[i].style.fontWeight = "bold"
+		eliminar[i].style.display = "none"
 	}
 
 	if (fecha > diaActual) {
@@ -36,10 +38,12 @@ for (var i = 0; i < fechaDOM.length; i++) {
 			estado[i].innerHTML = "EN JUEGO"
 			estado[i].style.backgroundColor = "#FBF663"
 			estado[i].style.fontWeight = "bold"
+			eliminar[i].style.display = "none"
 			if (horaActual > horasFin) {
 				estado[i].innerHTML = "JUGADO"
 				estado[i].style.backgroundColor = "#FB6C63"
 				estado[i].style.fontWeight = "bold"
+				eliminar[i].style.display = "none"
 			}
 
 		} else{
