@@ -5,14 +5,13 @@
 	<meta charset="utf-8" />
 	<div th:replace="fragments/bootstrap::head2(title='Usuarios')" />
 	<link rel="stylesheet" type="text/css" href="static/css/usuarios.css" th:href="@{/css/usuarios.css}" />
-	<link rel="stylesheet" type="text/css" href="static/css/dataTable.css" th:href="@{/css/dataTable.css}" />
 	<script src="/js/dataTable.js" th:href="@{/js/dataTable.js}" defer></script>
 	<script src="/js/usuarios.js" th:href="@{/js/usuarios.js}" defer></script>
 </head>
 
 <body>
 	<header th:insert="fragments/parts::barra2"></header>
-	<div class="mx-auto col-11">
+	<div class="mx-auto col-12 col-md-12 col-sm-1">
 		<div class="title">
 			<h1>Usuarios<span>Reserva La Pista</span></h1>
 		</div>
@@ -64,15 +63,15 @@
 						<td name="fechaNac" th:text="${u.getFecha_nacimiento()}"></td>
 						<td th:text="${u.getFecha_registro()}"></td>
 
-						<td><a title="Editar" type="button" class="btn btn-success" th:href="@{'/usuarios/edit?user='+${u.getId()}}"><i
-									class="fas fa-edit"></i></a></td>
+						<td><a title="Editar" type="button" class="btn btn-success"
+								th:href="@{'/usuarios/edit?user='+${u.getId()}}"><i class="bi bi-pencil-square"></i></a>
+						</td>
 						<!--<td><a type="button" class="btn btn-danger"
 								th:href="@{'/usuarios/delete?user='+${u.getId()}}"><i class="far fa-trash-alt"></i></a>
 						</td> -->
-						
+
 						<td><a title="Eliminar" type="button" class="btn btn-danger" href="#"
-								th:onclick="'javascript:confirmDelete(\''+ ${u.id} +'\');'"><i
-									class="fas fa-user-times"></i></a>
+								th:onclick="'javascript:confirmDelete(\''+ ${u.id} +'\');'"><i class="bi bi-person-x-fill"></i></a>
 						</td>
 					</tr>
 				</tbody>

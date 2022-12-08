@@ -16,21 +16,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public Usuario insertUsuario(Usuario usuario) {
-
-//		if (usuario != null) {
-//
-//			return userRepo.save(usuario);
-//		}
-//
-//		return null;
 		if (usuario != null && getUsuarioByUserName(usuario.getUsername()) == null
 				&& getUsuarioByEmail(usuario.getEmail()) == null && getUsuarioByNif(usuario.getNif()) == null) {
 			Usuario user = userRepo.save(usuario);
 			return user;
 		}
-
 		return null;
-
 	}
 
 	@Override
@@ -94,5 +85,5 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return null;
 	}
 
-
+	
 }

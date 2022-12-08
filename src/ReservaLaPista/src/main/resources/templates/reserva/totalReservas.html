@@ -39,6 +39,7 @@
 			<table class="records_list table table-striped table-bordered table-hover text-center" id="mydatatable">
 				<thead class="table-light">
 					<tr>
+						<th>Id</th>
 						<th>Usuario</th>
 						<th>Nombre y apellidos</th>
 						<th>Deporte</th>
@@ -51,6 +52,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="r : ${reserva}">
+						<td th:text="${r.getId()}"></td>
 						<td th:text="${r.usuario.getUsername()}"></td>
 						<td
 							th:text="${r.usuario.getNombre() + ', ' + r.usuario.getApellido1() + ' ' + r.usuario.getApellido2()}">

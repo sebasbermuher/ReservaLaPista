@@ -88,25 +88,21 @@ h1 em {
            text-align:center;
        }
        td:nth-of-type(1):before {
-	    content: "Id:";
+	    content: "Nombre:";
 	    font-style: oblique;
 	  }
 	  td:nth-of-type(1) {
 	   color: white !important;
 	  }
 	  td:nth-of-type(2):before {
-	    content: "Nombre:";
+	    content: "Deporte:";
 	    font-style: oblique;
 	  }
 	  td:nth-of-type(3):before {
-	    content: "Deporte:";
-	     font-style: oblique;
-	  }
-	  td:nth-of-type(4):before {
 	    content: "Apertura:";
 	     font-style: oblique;
 	  }
-	  td:nth-of-type(5):before {
+	  td:nth-of-type(4):before {
 	    content: "Cierre:";
 	     font-style: oblique;
 	  }

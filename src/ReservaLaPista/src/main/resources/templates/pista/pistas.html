@@ -58,14 +58,13 @@
 						<td th:text="${p.getCierre()}"></td>
 
 						<td><a title="Editar" type="button" class="btn btn-success"
-								th:href="@{'/pistas/edit?pist='+${p.getId()}}"><i class="fas fa-edit"></i></a></td>
+								th:href="@{'/pistas/edit?pist='+${p.getId()}}"><i class="bi bi-pencil-square"></i></a></td>
 						<!--<td><a type="button" class="btn btn-danger" th:href="@{'/pistas/delete?pist='+${p.getId()}}"><i
 									class="far fa-trash-alt"></i></a>
 						</td> -->
 
 						<td><a title="Eliminar" type="button" class="btn btn-danger" href="#"
-								th:onclick="'javascript:confirmDelete(\''+ ${p.id} +'\');'"><i
-									class="fas fa-user-times"></i></a>
+								th:onclick="'javascript:confirmDelete(\''+ ${p.id} +'\');'"><i class="bi bi-person-x-fill"></i></a>
 						</td>
 
 					</tr>

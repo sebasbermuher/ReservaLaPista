@@ -59,10 +59,6 @@ public class ReservaController {
 		return "reserva/reservar";
 	}
 
-//	public List<Reserva> findReservas(Long idReserva, Date fechaReserva) {
-//		return reservaService.findReservasByIdAndFecha(idReserva, fechaReserva);
-//	}
-
 	@PostMapping("/reservar")
 	public String reservarPost(@ModelAttribute ReservaDTO reservaDTO, Model model, RedirectAttributes atribute) {
 
@@ -78,21 +74,22 @@ public class ReservaController {
 		SimpleMailMessage email = new SimpleMailMessage();
 
 		if (reservaService.insertReserva(reserva) == null) {
-			return "redirect:/reservar?error=Existe&Reserva=" + reservaDTO.getId_usuario() + reservaDTO.getId_pista();
-		} else {
-			email.setTo(reservaDTO.getId_usuario().getEmail());
-			email.setSubject("Reserva confirmada.");
-			email.setText("Estimado/a " + reservaDTO.getId_usuario().getNombre() + " "
-					+ reservaDTO.getId_usuario().getApellido1() + " " + reservaDTO.getId_usuario().getApellido2()
-					+ ", \nle confirmamos su reserva de la pista ''" + reservaDTO.getId_pista().getNombre() + " ("
-					+ reservaDTO.getId_pista().getDeporte() + ")'' " + " para el día " + fechaFormat
-					+ " con el siguiente tramo horario: " + reservaDTO.getHora_inicio()
-					+ ". \nGracias por usar nuestros servicios. \nReservaLaPista");
-
-			mailSender.send(email);
-			atribute.addFlashAttribute("success", "Reserva realizada con éxito.");
-			return "redirect:/misreservas";
+			return "redirect:/reservar?error=Existe&Reserva=";
 		}
+
+		email.setTo(reservaDTO.getId_usuario().getEmail());
+		email.setSubject("Reserva confirmada.");
+		email.setText("Estimado/a " + reservaDTO.getId_usuario().getNombre() + " "
+				+ reservaDTO.getId_usuario().getApellido1() + " " + reservaDTO.getId_usuario().getApellido2()
+				+ ", \nle confirmamos su reserva de la pista ''" + reservaDTO.getId_pista().getNombre() + " ("
+				+ reservaDTO.getId_pista().getDeporte() + ")'' " + " para el día " + fechaFormat
+				+ " con el siguiente tramo horario: " + reservaDTO.getHora_inicio()
+				+ ". \nGracias por usar nuestros servicios. \nReservaLaPista");
+
+		mailSender.send(email);
+		atribute.addFlashAttribute("success", "Reserva realizada con éxito.");
+
+		return "redirect:/misreservas";
 
 	}
 

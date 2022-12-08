@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="fragments/bootstrap::head(title='Cambiar Contraseña')"></head>
+
+<body>
+	<header th:insert="fragments/parts::barra"></header>
+
+		<br>
+		<ul class="nav justify-content-center">
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/ajustes}">Mis Datos</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/ajustes/cambiarPassw}">Cambiar Contraseña</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link btn btn-primary btn-sm active" aria-current="page" th:href="@{/ajustes/cuenta}" 
+			role="button">Eliminar Cuenta</a>
+			</li>
+		</ul>
+		
+		<td><a th:href="@{/ajustes/cuenta/eliminar?user={principal.getName()}}"><i
+									class="bi bi-trash-fill"></i> </a></td>
+	<br>
+	<br>
+<footer th:insert="fragments/parts::pie"></footer>
+
+
+</body>
+
+</html>

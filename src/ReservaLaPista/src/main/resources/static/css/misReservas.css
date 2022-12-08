@@ -95,22 +95,21 @@ h1 em {
 	   color: white !important;
 	  }
 	  td:nth-of-type(2):before {
-	    content: "Nombre:";
+	    content: "Pista:";
 	    font-style: oblique;
 	  }
 	  td:nth-of-type(3):before {
-	    content: "Deporte:";
+	    content: "Fecha:";
 	     font-style: oblique;
 	  }
 	  td:nth-of-type(4):before {
-	    content: "Apertura:";
+	    content: "Tramos horario:";
 	     font-style: oblique;
 	  }
 	  td:nth-of-type(5):before {
-	    content: "Cierre:";
+	    content: "Estado:";
 	     font-style: oblique;
 	  }
+	 
 }
-
-
 
