@@ -2,12 +2,11 @@
 <html>
 
 <head>
-<meta charset="utf-8" />
-<div th:replace="fragments/bootstrap::head2(title='Usuarios')" />
-<link rel="stylesheet" type="text/css" href="static/css/usuarios.css"
-	th:href="@{/css/usuarios.css}" />
-<script src="/js/dataTable.js" th:href="@{/js/dataTable.js}" defer></script>
-<script src="/js/usuarios.js" th:href="@{/js/usuarios.js}" defer></script>
+	<meta charset="utf-8" />
+	<div th:replace="fragments/bootstrap::head2(title='Usuarios')" />
+	<link rel="stylesheet" type="text/css" href="static/css/usuarios.css" th:href="@{/css/usuarios.css}" />
+	<script src="/js/dataTable.js" th:href="@{/js/dataTable.js}" defer></script>
+	<script src="/js/usuarios.js" th:href="@{/js/usuarios.js}" defer></script>
 </head>
 
 <body>
@@ -20,84 +19,86 @@
 		</div>
 
 		<!-- MENSAJES ALERT-->
-		<div class="alert alert-success alert-dismissable"
-			th:if="${success != null}">
+		<div class="alert alert-success alert-dismissable" th:if="${success != null}">
 			<label th:text="${success}"></label>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 		</div>
-		<div class="alert alert-warning alert-dismissable"
-			th:if="${warning != null}">
+		<div class="alert alert-warning alert-dismissable" th:if="${warning != null}">
 			<label th:text="${warning}"></label>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 		</div>
-		<div class="alert alert-info alert-dismissable"
-			th:if="${edit != null}">
+		<div class="alert alert-info alert-dismissable" th:if="${edit != null}">
 			<label th:text="${edit}"></label>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 		</div>
 
-		<a sec:authorize="hasRole('ROLE_ADMIN')"
-			th:href="@{../usuarios/addUsuario}"
+		<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{../usuarios/addUsuario}"
 			class="btn btn-primary btn-lg active" role="button">Añadir
 			Usuario</a> <br> <br>
-		<div class="table-responsive" id="mydatatable-container">
-			<table
-				class="records_list table table-striped table-bordered table-hover text-center"
-				id="mydatatable">
-				<thead class="table-light">
-					<tr>
-						<th>ID</th>
-						<th>Username</th>
-						<th>Nombre</th>
-						<th>1er Apellido</th>
-						<th>2º Apellido</th>
-						<th>Email</th>
-						<th>Role</th>
-						<th>Fecha Nacimiento</th>
-						<th>Fecha Registro</th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="u : ${usuario}">
-						<td th:text="${u.getId()}"></td>
-						<td th:text="${u.getUsername()}"></td>
-						<td th:text="${u.getNombre()}"></td>
-						<td th:text="${u.getApellido1()}"></td>
-						<td th:text="${u.getApellido2()}"></td>
-						<td th:text="${u.getEmail()}"></td>
-						<td th:text="${u.getRole()}"></td>
-						<td name="fechaNac" th:text="${u.getFecha_nacimiento()}"></td>
-						<td th:text="${u.getFecha_registro()}"></td>
+		<table id="example" class="display responsive nowrap" style="width:100%">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Username</th>
+					<th>Nombre</th>
+					<th>1er Apellido</th>
+					<th>2º Apellido</th>
+					<th>DNI</th>
+					<th>Email</th>
+					<th>Telefono</th>
+					<th>Role</th>
+					<th>Fecha Nacimiento</th>
+					<th>Sexo</th>
+					<th>Fecha Registro</th>
+					<th>Localidad</th>
+					<th>Provincia</th>
+					<th>Info</th>
+					<th>Reservas</th>
+					<th>Editar</th>
+					<th>Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="u : ${usuario}">
+					<td th:text="${u.getId()}"></td>
+					<td th:text="${u.getUsername()}"></td>
+					<td th:text="${u.getNombre()}"></td>
+					<td th:text="${u.getApellido1()}"></td>
+					<td th:text="${u.getApellido2()}"></td>
+					<td th:text="${u.getNif()}"></td>
+					<td th:text="${u.getEmail()}"></td>
+					<td th:text="${u.getTelefono()}"></td>
+					<td th:text="${u.getRole()}"></td>
+					<td name="fechaNac" th:text="${u.getFecha_nacimiento()}"></td>
+					<td th:text="${u.getSexo()}"></td>
+					<td th:text="${u.getFecha_registro()}"></td>
+					<td th:text="${u.getLocalidad()}"></td>
+					<td th:text="${u.getProvincia()}"></td>
+					<td><a title="Ver Info" type="button" class="btn btn-success"
+							th:href="@{'/usuarios/info?user='+${u.getId()}}"><i class="bi bi-info-circle"></i></a>
+					</td>
 
-						<td><a title="Ver Info" type="button" class="btn btn-success"
-							th:href="@{'/usuarios/info?user='+${u.getId()}}"><i
-								class="bi bi-info-circle"></i></a></td>
-						<td><a
-							th:href="@{'/usuarios/reservas?codigo='+${u.getId()}}"><i
-								class="bi bi-journal-bookmark-fill"></i></a></td>
+					<td><a title="Ver Reservas" type="button" class="btn btn-success text-center"
+							th:href="@{'/usuarios/reservas?codigo='+${u.getId()}}"><i class="bi bi-book"></i></a>
+					</td>
 
-						<td><a title="Editar" type="button" class="btn btn-success"
-							th:href="@{'/usuarios/edit?user='+${u.getId()}}"><i
-								class="bi bi-pencil-square"></i></a></td>
+					<td><a title="Editar" type="button" class="btn btn-success"
+							th:href="@{'/usuarios/edit?user='+${u.getId()}}"><i class="bi bi-pencil-square"></i></a>
+					</td>
 
-						<td><a title="Eliminar" type="button" class="btn btn-danger"
-							href="#"
+					<td><a title="Eliminar" type="button" class="btn btn-danger" href="#"
 							th:onclick="'javascript:confirmDelete(\''+ ${u.id} +'\');'"><i
 								class="bi bi-person-x-fill"></i></a></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	<br>
 	<br>
 	<div th:include="confirm-delete-dialog.html" th:remove="tag"></div>
 	<footer th:insert="fragments/parts::pie"></footer>
 	<script type="text/javascript">
+
 		function confirmDelete(id) {
 			$('#deleteModal').modal('show');
 			$("#userIdHiddenInput").val(id);

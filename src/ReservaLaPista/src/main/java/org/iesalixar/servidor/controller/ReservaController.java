@@ -232,7 +232,7 @@ public class ReservaController {
 
 		mailSender.send(email);
 		reservaService.eliminarReserva(reserva);
-		atribute.addFlashAttribute("warning", "Su reserva ha sido cancelada con éxito.");
+		atribute.addFlashAttribute("warning", "Su reserva se ha cancelado.");
 
 		return "redirect:/misreservas?codigo=" + rese;
 
