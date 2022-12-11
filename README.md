@@ -98,14 +98,20 @@ Vídeo demostrativo que contenga una pequeña demostración de la apariencia del
 
 ## Conclusión
 Para concluir pienso que es una buena idea de proyecto a tratar, a la que quizás hay que pulir aún más.
+
 Algunas ideas que podrían mejorar su uso podrían ser:
+
 -	La implementación de forma de pago.
 -	Que la propia aplicación te permita buscar partido con otros rivales.
 -	Crear un formulario de contacto en el que el usuario rellenando un formulario le envíe un mensaje al email de la empresa.
 
 Pongo fin a este proyecto confirmando que ha sido una gran experiencia para mí, desde la creación de mi primer proyecto personal hasta todos estos cursos del grado, en general. 
+
 Ahora veo toda mi evolución desde que me matriculé sin saber casi nada de programación y no saber cómo me iría.
+
 Por ello me siento ORGULLOSO.
 Han sido muchas horas incansables picando código y buscando información, pero han valido la pena, puesto que me ha gustado desarrollar este trabajo.
+
 Desde estas humildes líneas me gustaría agradecer a mi familia cuantísimo apoyo que me dan, y a todos los profesores que he tenido por demostrarme sus conocimientos.
+
 Especial agradecimiento a mi tutor de proyecto D. Antonio Gabriel González Casado.
