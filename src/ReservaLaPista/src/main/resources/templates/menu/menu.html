@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title>Menu</title>
-	<link rel="stylesheet" type="text/css" href="static/css/index.css" th:href="@{/css/index.css}">
-</head>
+
+<head th:replace="fragments/bootstrap::head2(title='Menu')"></head>
+<link rel="stylesheet" type="text/css" href="static/css/menu.css" th:href="@{/css/menu.css}">
 
 <body>
-	<header th:insert="fragments/parts::barra"></header>
+	<header th:insert="fragments/parts::barra2"></header>
 
 	<div class="login-page">
 		<div class="form">
@@ -19,7 +17,7 @@
 			<a th:href="@{/reservar}">Ir a Reservar Espacio</a>
 		</div>
 	</div>
-	<footer th:insert="fragments/parts::pie"></footer>
 </body>
+<footer th:insert="fragments/parts::pie"></footer>
 
 </html>

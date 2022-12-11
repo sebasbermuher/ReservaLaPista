@@ -65,4 +65,21 @@ footer li{
 
 .footer-copyright p{
     margin-bottom: 0px;
+    margin-left: -3%;
+}
+
+.icons{
+	margin-left: -4%;
+}
+
+.menu{
+	margin-left: -6%;
+}
+
+
+@media screen and (max-width: 600px) {
+	  .icons{
+		  margin-left: -8% !important;
+}
+
 }

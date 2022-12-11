@@ -69,7 +69,7 @@ Algunas de las dependencias de Spring que implemento son:
 - **Spring DATA JPA** y **MariaDB JDBC**(local): para controlar los datos de almacenamiento SQL usando Hibernate.
 - **Tomcat**: es un contenedor de servlets que se puede usar para compilar y ejecutar aplicaciones web realizadas en Java. Implementa y da soporte tanto a servlets como a páginas JSP.
 - **Spring Boot Mail**: para enviar correos electrónicos.
-- **MYSQL**: para controlar los datos de almacenamiento SQL. Este solo lo uso en el servidor web donde está alojado mi web.
+- **MYSQL**: para controlar los datos de almacenamiento SQL. Este solo lo uso en el servidor web (railway) donde está alojado mi web.
 
 
 Para la gestión de la base de datos usare:
