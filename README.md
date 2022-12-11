@@ -54,25 +54,30 @@ Algunos de los requisitos funcionales de mi aplicación son:
 - **REQ12-Usuarios**: En este apartado se mostrarán todos los usuarios. Solo los administradores tendrán acceso y podrán realizar las siguientes gestiones: añadir, editar, ver informacion, ver reservas y eliminar usuario.
 
 ## Stack Tecnológico
+Para la parte del back he decidido utilizar **Spring Boot** ya que es uno de los framework libre más usados de JAVA. Además tiene la posibilidad de incorporar **Spring Securiry**, el cuál también he usado para la autenticación y control de acceso.
 
-Para la parte back he decidido escoger **Eclipse**, ya que es el que vengo usando y con el que me encuentro más comodo.
-En cuanto a la parte del front usaré **Visual Studio Code**, fácil de usar y con variedad de plugins.
+En cuanto a la parte del front usaré **Thymeleaf**, un moderno motor de plantillas Java del lado del servidor para entornos web. También utilizaré **HTML** y **CSS**. Además, implementaré **Bootstrap** para usar su gran varieda de componentes y hacer que mi web sea responsive.
+Con **Javascript** haré que la aplicación sea más interactiva.
 
-El framework que usaré será **Spring**, ya que podemos usar **Tomcat** y cuenta con muchas dependencias. Algunas de las dependencias que usaré son:
-- **Spring Boot**: Facilita la creación de aplicaciones Spring y contiene Tomcat
-- **Spring web**: ensecial para un web, con patron MVC.
-- **Spring web**: ensecial para un web, con patron MVC.
-- **Spring DATA JPA** y **MariaDB**: para controlar los datos de almacenamiento SQL usando Hibernate.
-- **Spring security**: cuenta con autenticación. Puede crear filtro para diferenciar a que pagina puede ir el usuario dependiendo por ejemplo del rol que tenga. Tambien tiene encriptación de contraseñas.
-- Tengo una dependecia extra pensada (investigar) que me servirá para enviar email al usuario para confirmar la reserva.
+Para la creación de las plantillas HTML me he ayudado de **Visual Studio Code** ya que es un muy buen editor de código fuente, libre y con gran variedad de plugins.
 
-Para la vista MVC, usaré **Thymeleaf**.
+El sofwaere que utilizaré es **Spring**, bajo un servidor local **Tomcat**. 
+Algunas de las dependencias de Spring que implemento son:
+- **Spring Boot**: Facilita la creación de aplicaciones Spring y contiene servidor local Tomcat. Puede crear filtro para diferenciar a que pagina puede ir el usuario dependiendo por ejemplo del rol que tenga.
+- **Spring Securiry**: es un marco de autenticación y control de acceso potente y altamente personalizable.
+- **Thymeleaf**: un moderno motor de plantillas Java del lado del servidor para entornos web.
+- **Spring DATA JPA** y **MariaDB JDBC**(local): para controlar los datos de almacenamiento SQL usando Hibernate.
+- **Tomcat**: es un contenedor de servlets que se puede usar para compilar y ejecutar aplicaciones web realizadas en Java. Implementa y da soporte tanto a servlets como a páginas JSP.
+- **Spring Boot Mail**: para enviar correos electrónicos.
+- **MYSQL**: para controlar los datos de almacenamiento SQL. Este solo lo uso en el servidor web donde está alojado mi web.
 
-Para la parte frontend utilizaré principalmente **HTML5** y **CSS3**, añadiendo **Bootstrap**, ya que me ayudará a hacer mi web responsive.
-Tambien implementaré **Javascript** para que la web sea más interactiva.
 
-Para la gestión de la base de datos usare **MariaDB** (SQL) en un contenedor **Docker**. En la parte local me ayudaré con **DBeaver**, que es una interfaz para la gestión de bases de datos.
+Para la gestión de la base de datos usare:
+- **EN LOCAL:**
+    - **MariaDB** en un contenedor **Docker**. Me ayudaré de **DBeaver**, que es una interfaz para la gestión de bases de datos.
 
+- **EN SERVIDOR RAILWAY:** 
+    - **SQL**
 
 ## Prototipo de la Interfaz del proyecto
 
