@@ -27,6 +27,16 @@ Es una web muy intuitiva y clara, fácil de usar para todas la edades, sin neces
 
 A parte de ayudar a los usuarios a la gestión de reservas, también es de gran ayuda para la empresa puesto que no tendría que depender de una persona encargada de realizar las reservas manualmente.
 
+Hoy en día, la mayoría de los jóvenes que práctica deporte en pistas deportivas realizan las reservas desde alguna aplicacion web. Como por ejemplo 'Playtomic', una de las aplicaciones más usada y popular, sobre todo para los amantes del padel y tenis.
+Esta aplicación ofrece a las empresas un espacio en su web para mostrar sus pistas deportivas y que los usuarios puedan reservar.
+Una ventaja de 'Playtomic' es que aparte de poder reservar pistas con un simple click, puedes reservar clases particulares.
+Además tambien tiene un apartado para buscar partidos con otros usuarios de la plataforma.
+Otra aplicación relacionada es 'Booksy', en la cual podrás encontrar cualquier tipo de servicios a tu alrededor, como por ejemplo peluqueros, entrenadores personales, salon de tatuajes, etc.
+
+Con esto quiero dejar claro que este tipo de aplicaciones las usamos en el día a día, y hasta la propia Universidad de Sevilla tiene una web para la reserva de aulas.
+
+Por lo tanto, si tienes una empresa de este tipo, que ofrezca servicios a las personas, creo que deberia de estar dado de alta en alguna de estas aplicaciones.
+
 Algunos de los requisitos funcionales son:
 
 - **REQ01-Login**: El usuario deberá loguearse con su cuenta para poder entrar. Si no tiene cuenta podrá crearse una en el formulario de crear cuenta.
@@ -34,10 +44,13 @@ Algunos de los requisitos funcionales son:
 - **REQ03-Baja de usuario**: El usuario puede darse de baja cuando desee y su cuente será eliminada.
 - **REQ04-Reserva de espacios**: El usuario puede ver la disponibilidad de las pistas y realizar reservas.
 - **REQ05-Mis reservas**: El sistema deberá mostrar las reservas realizada por el usuario.
+- **REQ06-Todas la reservas**: El sistema mostrará todas las reservas realizadas. Solo tendran acceso los administradores. Podrán realizar gestiones como eliminar o crear nueva reserva y ver informacion del usuario de la reserva.
 - **REQ06-Ajustes de usuario**: El sistema cuenta con un apartado de ajustes para que el usuario modifique sus datos.
 - **REQ07-Logout**: El sistema cuenta con un boton logout en la barra superior, para que el usuario puede cerra sesión cuando quiera.
 - **REQ08-Eliminar reserva**: El sistema tiene un apartado para cancelar la reserva.
-- **REQ09-Pistas**: En este apartado el usuario puede ver las pistas que hay y sus datos, como por ejemplo el horario.
+- **REQ09-Horarios**: En este apartado el usuario puede ver las pistas y sus horarios.
+- **REQ09-Pistas**: El sistema mostrará todas las pistas. Solo los usuarios administradores tiene permiso para gestionarlas (añadir, editar, ver reservas de la pista o eliminar pista)
+- **REQ09-Usuarios**: En este apartado se mostrarán todos los usuarios. Solo los administradores tendrán acceso y podrán realizar las siguientes gestiones: añadir, editar, ver informacion, ver reservas y eliminar usuario.
 
 ## Stack Tecnológico
 
