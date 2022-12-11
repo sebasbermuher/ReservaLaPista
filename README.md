@@ -1,4 +1,4 @@
-# Título del Proyecto
+# Reserva La Pista
 
 #### Curso Escolar 2022-2023
 #### Autor: Sebastián Bermúdez Herrera (https://github.com/sebasbermuher)
