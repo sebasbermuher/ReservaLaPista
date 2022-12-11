@@ -44,7 +44,7 @@ Algunos de los requisitos funcionales de mi aplicación son:
 - **REQ02-Alta de usuario**: El usuario sin cuenta registrada podrá crearse una cuente nueva.
 - **REQ03-Baja de usuario**: El usuario puede darse de baja cuando desee y su cuente será eliminada.
 - **REQ04-Reserva de espacios**: El usuario puede ver la disponibilidad de las pistas y realizar reservas.
-- **REQ05-Mis reservas**: El sistema deberá mostrar las reservas realizada por el usuario.
+- **REQ05-Mis reservas**: El sistema deberá mostrar al usuario las reservas que ha realizado. El usuario podrá cancelar su reservas siempre y cuando no haya empezado el partido (hora de inicio).
 - **REQ06-Todas la reservas**: El sistema mostrará todas las reservas realizadas. Solo tendran acceso los administradores. Podrán realizar gestiones como eliminar o crear nueva reserva y ver informacion del usuario de la reserva.
 - **REQ07-Ajustes de usuario**: El sistema cuenta con un apartado de ajustes para que el usuario modifique sus datos.
 - **REQ08-Logout**: El sistema cuenta con un boton logout en la barra superior, para que el usuario puede cerra sesión cuando quiera.
