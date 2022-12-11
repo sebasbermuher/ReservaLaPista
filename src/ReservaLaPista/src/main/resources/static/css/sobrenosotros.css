@@ -1,0 +1,34 @@
+.frow {
+	clear:both;
+	padding:10px;
+}
+
+.frow .col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 0%;
+  	text-align: center;
+  	width: 45%;
+}
+
+.frow .col:first-child {
+	margin-left: 0; 
+}
+
+img{
+	  width: 40%;
+}
+
+
+/*--- VERSION MOVIL ---*/
+@media only screen and (max-width: 480px) {
+	.col {
+		width: 100% !important;
+		margin: 1% 0 1% 0%;
+		margin-left: 0 !important;
+	}
+		
+	img{
+	  width: 60%;
+}
+}

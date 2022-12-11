@@ -1,0 +1,15 @@
+ .iframe {
+	 display:block; 
+	 margin:auto;
+	 margin-top: -5%;
+}
+
+iframe{
+	margin-top: 10%;
+}
+
+@media only screen and (max-width: 600px) {
+	iframe {
+		max-width: 100%;
+	}
+}
