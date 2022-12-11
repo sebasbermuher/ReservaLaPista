@@ -37,7 +37,8 @@ Con esto quiero dejar claro que este tipo de aplicaciones las usamos en el día 
 
 Por lo tanto, si tienes una empresa de este tipo, que ofrezca servicios a las personas, creo que deberia de estar dado de alta en alguna de estas aplicaciones.
 
-Algunos de los requisitos funcionales son:
+
+Algunos de los requisitos funcionales de mi aplicación son:
 
 - **REQ01-Login**: El usuario deberá loguearse con su cuenta para poder entrar. Si no tiene cuenta podrá crearse una en el formulario de crear cuenta.
 - **REQ02-Alta de usuario**: El usuario sin cuenta registrada podrá crearse una cuente nueva.
@@ -45,12 +46,12 @@ Algunos de los requisitos funcionales son:
 - **REQ04-Reserva de espacios**: El usuario puede ver la disponibilidad de las pistas y realizar reservas.
 - **REQ05-Mis reservas**: El sistema deberá mostrar las reservas realizada por el usuario.
 - **REQ06-Todas la reservas**: El sistema mostrará todas las reservas realizadas. Solo tendran acceso los administradores. Podrán realizar gestiones como eliminar o crear nueva reserva y ver informacion del usuario de la reserva.
-- **REQ06-Ajustes de usuario**: El sistema cuenta con un apartado de ajustes para que el usuario modifique sus datos.
-- **REQ07-Logout**: El sistema cuenta con un boton logout en la barra superior, para que el usuario puede cerra sesión cuando quiera.
-- **REQ08-Eliminar reserva**: El sistema tiene un apartado para cancelar la reserva.
-- **REQ09-Horarios**: En este apartado el usuario puede ver las pistas y sus horarios.
-- **REQ09-Pistas**: El sistema mostrará todas las pistas. Solo los usuarios administradores tiene permiso para gestionarlas (añadir, editar, ver reservas de la pista o eliminar pista)
-- **REQ09-Usuarios**: En este apartado se mostrarán todos los usuarios. Solo los administradores tendrán acceso y podrán realizar las siguientes gestiones: añadir, editar, ver informacion, ver reservas y eliminar usuario.
+- **REQ07-Ajustes de usuario**: El sistema cuenta con un apartado de ajustes para que el usuario modifique sus datos.
+- **REQ08-Logout**: El sistema cuenta con un boton logout en la barra superior, para que el usuario puede cerra sesión cuando quiera.
+- **REQ09-Eliminar reserva**: El sistema tiene un apartado para cancelar la reserva.
+- **REQ10-Horarios**: En este apartado el usuario puede ver las pistas y sus horarios.
+- **REQ11-Pistas**: El sistema mostrará todas las pistas. Solo los usuarios administradores tiene permiso para gestionarlas (añadir, editar, ver reservas de la pista o eliminar pista)
+- **REQ12-Usuarios**: En este apartado se mostrarán todos los usuarios. Solo los administradores tendrán acceso y podrán realizar las siguientes gestiones: añadir, editar, ver informacion, ver reservas y eliminar usuario.
 
 ## Stack Tecnológico
 
